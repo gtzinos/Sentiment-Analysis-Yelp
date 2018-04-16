@@ -1,3 +1,4 @@
+import { SideNavModule } from './sidenav/sidenav.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -7,10 +8,9 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule,SideNavModule
   ],
   providers: [],
   bootstrap: [AppComponent]
