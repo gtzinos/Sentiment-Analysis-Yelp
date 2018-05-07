@@ -3,10 +3,10 @@ from database_table import DatabaseTable
 
 class Reviews(DatabaseTable):
     def __init__(self, name):
-        DatabaseTable.__init__(name)
+        DatabaseTable.__init__(self, name)
 
-    def find_random_reviews(db, num):
-        random_reviews = db['reviews'].aggregate([{'$sample': {'size': num}}])
+    def find_random_reviews(self, db, num):
+        random_reviews = db[self.name].aggregate([{'$sample': {'size': num}}])
         random_reviews = list(random_reviews)
 
         for review in random_reviews:
