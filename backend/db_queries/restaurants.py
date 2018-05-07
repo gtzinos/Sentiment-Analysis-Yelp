@@ -1,14 +1,13 @@
 import pymongo
+from database_table import DatabaseTable
 
-def find_top_restaurants(db, num):
-    return db['restaurants'].find({}, {'_id': False}).sort([('review_count', pymongo.DESCENDING)]).limit(num)
+class Restaurants(DatabaseTable):
+
+    def __init__(self, name):
+        DatabaseTable.__init__(name)
 
 
-def find_random_reviews(db, num):
-    random_reviews = db['reviews'].aggregate([{'$sample': {'size': num}}])
-    random_reviews = list(random_reviews)
+    def find_top_restaurants(db, num):
+        return db[self.name].find({}, {'_id': False}).sort([('review_count', pymongo.DESCENDING)]).limit(num)
 
-    for review in random_reviews:
-        review['restaurant_name'] = db['restaurants'].find_one({'business_id': review['business_id']})['name']
-        review['user_name'] = db['users'].find_one({'user_id': review['user_id']})['name']
-    return random_reviews
+
