@@ -1,3 +1,5 @@
+import pandas as pd
+
 class DatabaseTable:
 
     def __init__(self, name):
@@ -8,3 +10,6 @@ class DatabaseTable:
 
     def find_count(self, db):
         return db[self.name].find({}).count()
+
+    def toDataFrame(self, cursor):
+        return pd.DataFrame(list(cursor))
