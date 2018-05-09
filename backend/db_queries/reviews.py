@@ -15,9 +15,9 @@ class Reviews(DatabaseTable):
         return random_reviews
 
     #stars != 3
-    def get_filtered_reviews(self, db, limit):
+    def get_filtered_reviews(self, db, useful = 1, limit = None):
 
-        filtered = db[self.name].find({"stars" : {"$ne": 3}})
+        filtered = db[self.name].find({"stars" : {"$ne": 3}, "useful": {"$ge": useful}})
 
         if limit != None:
             filtered.limit(limit)
