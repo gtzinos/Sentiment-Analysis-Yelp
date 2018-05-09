@@ -15,13 +15,19 @@ class Reviews(DatabaseTable):
         return random_reviews
 
     #stars != 3
-    def get_filtered_reviews(self, db):
-        filtered = list(db[self.name].find({"stars" : {"$ne": 3}}))
+    def get_filtered_reviews(self, db, limit):
+
+        filtered = db[self.name].find({"stars" : {"$ne": 3}})
+
+        if limit != None:
+            filtered.limit(limit)
+
+        filtered = list(filtered)
 
         for review in filtered:
             review['restaurant_name'] = db['restaurants'].find_one({'business_id': review['business_id']})['name']
             review['user_name'] = db['users'].find_one({'user_id': review['user_id']})['name']
 
-        return random_reviews
+        return filtered
 
 
