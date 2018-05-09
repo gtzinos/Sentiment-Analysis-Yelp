@@ -5,7 +5,7 @@ import nltk
 from nltk.corpus import stopwords
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, MinMaxScaler
 
-def oneHotEncoding(data, indexes: []):
+def oneHotEncoding(data, indexes):
     for index in indexes:
         # Encode string to number (For field name area)
         toEncode = data[:, index]
