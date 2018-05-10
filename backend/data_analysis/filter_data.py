@@ -4,6 +4,16 @@ import matplotlib.pyplot as plt
 import nltk
 from nltk.corpus import stopwords
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder, MinMaxScaler
+from sklearn.feature_extraction.text import CountVectorizer
+import string
+from nltk.stem.snowball import EnglishStemmer
+import unicodedata
+from nltk.tokenize import TweetTokenizer
+import inflect
+import re
+
+nltk.download('stopwords')
+
 
 def oneHotEncoding(data, indexes):
     for index in indexes:
@@ -37,7 +47,13 @@ def normalize_array(array, indexes):
     return array
 
 def tokenization(text):
-    return nltk.word_tokenize(text)
+    tknzr = TweetTokenizer()
+    return tknzr.tokenize(text)
+
+def count_vectorizer(text):
+    return CountVectorizer().build_tokenizer()(text)
+
+
 
 def remove_non_ascii(words):
     """Remove non-ASCII characters from list of tokenized words"""
@@ -57,12 +73,12 @@ def to_lowercase(words):
 
 def remove_punctuation(words):
     """Remove punctuation from list of tokenized words"""
-    new_words = []
-    for word in words:
-        new_word = re.sub(r'[^\w\s]', '', word)
-        if new_word != '':
-            new_words.append(new_word)
-    return new_words
+
+    exclude = set(string.punctuation)
+
+    words = ''.join(ch for ch in words if ch not in exclude)
+
+    return words
 
 def replace_numbers(words):
     """Replace all interger occurrences in list of tokenized words with textual representation"""
@@ -92,6 +108,11 @@ def stem_words(words):
         stem = stemmer.stem(word)
         stems.append(stem)
     return stems
+
+def stem_en_words(words):
+    stemmer = EnglishStemmer()
+
+    return [stemmer.stem(w) for w in words]
 
 def lemmatize_verbs(words):
     """Lemmatize verbs in list of tokenized words"""
