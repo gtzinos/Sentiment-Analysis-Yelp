@@ -14,9 +14,10 @@ def preprocessing(dataList, fieldNames):
             row[fieldName] = tokenization(row[fieldName])
             row[fieldName] = remove_non_ascii(row[fieldName])
             row[fieldName] = to_lowercase(row[fieldName])
-            row[fieldName] = remove_punctuation(row[fieldName])
+            #row[fieldName] = remove_punctuation(row[fieldName])
             row[fieldName] = replace_numbers(row[fieldName])
             row[fieldName] = remove_stopwords(row[fieldName])
+            row[fieldName] = stem_en_words(row[fieldName])
 
     return dataList
 
