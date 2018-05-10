@@ -11,6 +11,7 @@ import unicodedata
 from nltk.tokenize import TweetTokenizer
 import inflect
 import re
+from nltk.stem.lancaster import LancasterStemmer
 
 nltk.download('stopwords')
 
