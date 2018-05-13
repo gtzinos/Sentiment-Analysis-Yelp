@@ -8,12 +8,23 @@
 
   <mat-sidenav-container class="sidenav-container" [style.marginTop.px]="mobileQuery.matches ? 56 : 0">
     <mat-sidenav #snav [mode]="mobileQuery.matches ? 'over' : 'side'" [fixedInViewport]="mobileQuery.matches" fixedTopGap="56">
-      <mat-nav-list>
-        <div *ngFor="let nav of fillerNav">
-          <a mat-list-item [routerLink]="nav.url">{{nav.title}}</a>
-          <mat-divider></mat-divider>
-        </div>
-      </mat-nav-list>
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let parent of parentTitles">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              {{parent.title}}
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list>
+
+            <div *ngFor="let child of parent.children">
+              <a mat-list-item [routerLink]="child.url">{{child.title}}</a>
+              <mat-divider></mat-divider>
+
+            </div>
+          </mat-nav-list>
+        </mat-expansion-panel>
+      </mat-accordion>
     </mat-sidenav>
 
     <mat-sidenav-content>

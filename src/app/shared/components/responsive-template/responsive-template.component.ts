@@ -9,22 +9,37 @@ import {MediaMatcher} from '@angular/cdk/layout';
 export class ResponsiveTemplateComponent implements OnDestroy {
   mobileQuery: MediaQueryList;
 
-  fillerNav = [
+  parentTitles = [
     {
       title: "Home",
-      url: "/home"
+      url: "/home",
+      children: [
+
+      ]
     },
     {
       title: "Plots",
-      url: "/plots"
+      url: "/plots",
+      children: [
+        {
+          title: "Lexicons",
+          url: "lexicons"
+        }
+      ]
     },
     {
       title: "Comparing Algorithms",
-      url: "/compare"
+      url: "/compare",
+      children: [
+
+      ]
     },
     {
       title: "About",
-      url: "/about"
+      url: "/about",
+      children: [
+
+      ]
     }
   ]
 

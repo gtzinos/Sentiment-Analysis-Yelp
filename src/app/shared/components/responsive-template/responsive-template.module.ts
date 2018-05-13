@@ -5,7 +5,7 @@ import { NgModule } from "@angular/core";
 import { ResponsiveTemplateComponent } from './responsive-template.component';
 
 import {MatDividerModule} from '@angular/material/divider';
-import { MatIconModule, MatToolbarModule } from '@angular/material';
+import { MatIconModule, MatToolbarModule, MatButtonModule } from '@angular/material';
 import { MatListModule } from '@angular/material/list';
 import { MediaMatcher } from '@angular/cdk/layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -15,7 +15,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 @NgModule({
   imports: [
     RouterModule.forChild(routes), CommonModule, MatDividerModule, MatIconModule
-    , MatToolbarModule,MatExpansionModule, MatListModule, MatSidenavModule, FormsModule
+    , MatToolbarModule,MatButtonModule,MatExpansionModule, MatListModule, MatSidenavModule, FormsModule
   ],
   declarations: [
     ResponsiveTemplateComponent
