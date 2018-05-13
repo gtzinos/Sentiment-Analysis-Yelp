@@ -27,11 +27,4 @@ import {MatExpansionModule} from '@angular/material/expansion';
 })
 export class ResponsiveTemplateModule {
 
-}/*
-RouterModule.forChild([{
-  path: '', component: ResponsiveTemplateComponent, children: [
-    { path: '', redirectTo: 'search', pathMatch: "full" },
-    { path: 'search', loadChildren: "../../../components/search/search.module#SearchModule" },
-    { path: 'upload', loadChildren: "../../../components/upload/upload.module#UploadModule" },
-    { path: '**', redirectTo: 'search' }]
-}]*/
+}

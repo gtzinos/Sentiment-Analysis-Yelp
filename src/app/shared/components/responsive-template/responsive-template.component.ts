@@ -49,10 +49,7 @@ export class ResponsiveTemplateComponent implements OnDestroy {
     },
     {
       title: "About",
-      url: "/about",
-      children: [
-        
-      ]
+      url: "/about"
     }
   ]
 
