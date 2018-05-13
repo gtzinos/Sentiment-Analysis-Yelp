@@ -16,6 +16,9 @@ export const routes: Routes = [
       },
       {
         path: 'lexicons', loadChildren: '../../../components/lexicons/lexicons.module#LexiconsModule'
+      },
+      {
+        path: 'table', loadChildren: '../../../components/table/table.module#TableModule'
       }
 
     ]
