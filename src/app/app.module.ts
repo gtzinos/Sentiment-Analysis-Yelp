@@ -6,12 +6,16 @@ import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
 import { FwordsComponent } from './components/fwords/fwords.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
+import { AlgorithmComponent } from './components/algorithm/algorithm.component';
+import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FwordsComponent,
     ReviewsComponent,
+    AlgorithmComponent,
+    TableComponent,
   ],
   imports: [
     BrowserAnimationsModule,

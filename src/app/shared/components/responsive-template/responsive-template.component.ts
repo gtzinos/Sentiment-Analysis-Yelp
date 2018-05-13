@@ -37,14 +37,17 @@ export class ResponsiveTemplateComponent implements OnDestroy {
       title: "Compare Algorithms",
       url: "/compare",
       children: [
-
+        {
+          title: "Algorithm 1",
+          url: "/algorithm"
+        }
       ]
     },
     {
       title: "About",
       url: "/about",
       children: [
-
+        
       ]
     }
   ]
