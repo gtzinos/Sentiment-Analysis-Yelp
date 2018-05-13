@@ -5,10 +5,11 @@ import { AboutComponent } from './about.component';
 import { RouterModule } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   imports: [
-    CommonModule,MatCardModule, FormsModule, MatButtonModule,
+    CommonModule,MatIconModule,MatCardModule, FormsModule, MatButtonModule,
     RouterModule.forChild([{path: '', component: AboutComponent}])
   ],
   declarations: [AboutComponent]

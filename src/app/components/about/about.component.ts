@@ -50,12 +50,8 @@ export class AboutComponent implements OnInit {
       title: "Full Stack Developer",
       photo: "/assets/tzinos.png",
       description: "Hello...",
-      profiles: [
-        {
-          id: "git",
-          url: ""
-        }
-      ]
+      website: "http://www.geotzinos.com",
+      social: "https://www.linkedin.com/in/george-tzinos-8a6110101/"
     }
   ]
   constructor() { }

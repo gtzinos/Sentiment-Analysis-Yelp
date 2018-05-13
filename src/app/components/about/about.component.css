@@ -12,3 +12,7 @@
 .mat-card-image {
   height: 448px;
 }
+
+.mat-fab {
+  margin-right: 10px
+}
