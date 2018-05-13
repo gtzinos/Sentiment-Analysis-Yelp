@@ -1,5 +1,5 @@
 .developer-card {
-  width: 400px;
+  width: 200px;
   float: left;
   margin-right: 10px;
   margin-top: 10px
@@ -10,9 +10,13 @@
 }
 
 .mat-card-image {
-  height: 448px;
+  height: 248px;
 }
 
 .mat-fab {
   margin-right: 10px
+}
+
+.developer-title{
+  min-width: 150px;
 }

@@ -22,9 +22,9 @@ export class AboutComponent implements OnInit {
       ]
     },
     {
-      name: "Marinos Zagotsis",
+      name: "Anastasios Theodosiou",
       title: "Full Stack Developer",
-      photo: "https://scontent.fskg1-1.fna.fbcdn.net/v/t31.0-8/13048111_10209441039527662_864103833430926887_o.jpg?_nc_cat=0&oh=c5894f0645922afbfd47479fff410785&oe=5B93BC74",
+      photo: "https://media.licdn.com/dms/image/C5103AQHN8Jvu3uDVZQ/profile-displayphoto-shrink_800_800/0?e=1531958400&v=beta&t=VSbVAqQTFYQxUBxGQchjFpDKXrxzU4TTFL-MCrPOXis",
       description: "Hello...",
       profiles: [
         {
@@ -34,7 +34,7 @@ export class AboutComponent implements OnInit {
       ]
     },
     {
-      name: "Ilias Karatsin",
+      name: "Marinos Zagotsis",
       title: "Full Stack Developer",
       photo: "https://scontent.fskg1-1.fna.fbcdn.net/v/t1.0-9/13165870_10206152945047169_2926124721482332118_n.jpg?_nc_cat=0&oh=5fc8d7391a79a5699943be0ef1ee3812&oe=5B8C8D43",
       description: "Hello...",
