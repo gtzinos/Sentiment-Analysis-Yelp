@@ -1,6 +1,6 @@
 import { AppPage } from './app.po';
 
-describe('linkedin-sna App', () => {
+describe('workspace-project App', () => {
   let page: AppPage;
 
   beforeEach(() => {
