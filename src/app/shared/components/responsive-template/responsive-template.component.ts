@@ -1,5 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
 import {MediaMatcher} from '@angular/cdk/layout';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'responsive-template',
@@ -12,10 +13,7 @@ export class ResponsiveTemplateComponent implements OnDestroy {
   parentTitles = [
     {
       title: "Home",
-      url: "/home",
-      children: [
-
-      ]
+      url: "/home"
     },
     {
       title: "Plots",
