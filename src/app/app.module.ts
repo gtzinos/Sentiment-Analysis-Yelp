@@ -4,10 +4,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { RouterModule } from '@angular/router';
+import { FwordsComponent } from './components/fwords/fwords.component';
+import { ReviewsComponent } from './components/reviews/reviews.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    FwordsComponent,
+    ReviewsComponent,
   ],
   imports: [
     BrowserAnimationsModule,
