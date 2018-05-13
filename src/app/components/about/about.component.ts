@@ -16,7 +16,7 @@ export class AboutComponent implements OnInit {
       description: "Hello...",
       website: "",
       social: "",
-      email:"karatsin@csd.auth.gr",
+      email:"mailto:karatsin@csd.auth.gr",
       profiles: [
         {
           id: "git",
@@ -31,7 +31,7 @@ export class AboutComponent implements OnInit {
       description: "Hello...",
       website: "https://about.me/anastasios.theodosiou",
       social: "https://www.linkedin.com/in/anastasios-theodosiou",
-      email:"atheodos@csd.auth.gr",
+      email:"mailto:atheodos@csd.auth.gr",
       profiles: [
         {
           id: "git",
@@ -44,9 +44,8 @@ export class AboutComponent implements OnInit {
       title: "Full Stack Developer",
       photo: "https://scontent.fskg1-1.fna.fbcdn.net/v/t1.0-9/13165870_10206152945047169_2926124721482332118_n.jpg?_nc_cat=0&oh=5fc8d7391a79a5699943be0ef1ee3812&oe=5B8C8D43",
       description: "Hello...",
-      website: "http://www.geotzinos.com",
       social: "https://gr.linkedin.com/in/marinoszagkotsis",
-      email:"zagkotsis@csd.auth.gr",
+      email:"mailto:zagkotsis@csd.auth.gr",
       profiles: [
         {
           id: "git",
@@ -61,7 +60,7 @@ export class AboutComponent implements OnInit {
       description: "Hello...",
       website: "http://www.geotzinos.com",
       social: "https://www.linkedin.com/in/george-tzinos-8a6110101/",
-      email:"gtzinosv@csd.auth.gr"
+      email:"mailto:gtzinosv@csd.auth.gr"
     }
   ]
   constructor() { }
