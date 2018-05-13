@@ -1,20 +1,20 @@
+import { ResponsiveTemplateComponent } from './responsive-template.component';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SidenavComponent } from './sidenav.component';
 
-describe('SidenavComponent', () => {
-  let component: SidenavComponent;
-  let fixture: ComponentFixture<SidenavComponent>;
+describe('ResponsiveTemplateComponent', () => {
+  let component: ResponsiveTemplateComponent;
+  let fixture: ComponentFixture<ResponsiveTemplateComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SidenavComponent ]
+      declarations: [ ResponsiveTemplateComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SidenavComponent);
+    fixture = TestBed.createComponent(ResponsiveTemplateComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

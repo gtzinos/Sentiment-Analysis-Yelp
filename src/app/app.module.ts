@@ -1,10 +1,9 @@
-import { SideNavModule } from './sidenav/sidenav.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
-import { SidenavComponent } from './sidenav/sidenav.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -12,7 +11,14 @@ import { SidenavComponent } from './sidenav/sidenav.component';
   ],
   imports: [
     BrowserAnimationsModule,
-    BrowserModule,SideNavModule
+    BrowserModule,
+    RouterModule.forRoot([{
+      path: '', component: AppComponent, children: [
+        {
+          path: '', loadChildren: "./shared/components/responsive-template/responsive-template.module#ResponsiveTemplateModule"
+        }
+      ]
+    }])
   ],
   providers: [],
   bootstrap: [AppComponent]
