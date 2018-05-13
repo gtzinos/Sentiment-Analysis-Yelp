@@ -9,10 +9,10 @@ export const routes: Routes = [
         path: '', redirectTo: 'home', pathMatch: 'full'
       },
       {
-        path: 'home', loadChildren: '../../../../home/home.module#HomeModule'
+        path: 'home', loadChildren: '../../../components/home/home.module#HomeModule'
       },
       {
-        path: 'about', loadChildren: '../../../../about/about.module#AboutModule'
+        path: 'about', loadChildren: '../../../components/about/about.module#AboutModule'
       }
 
     ]
