@@ -21,7 +21,7 @@ export const routes: Routes = [
         path: 'table', loadChildren: '../../../components/table/table.module#TableModule'
       },
       {
-        path: 'reviews', loadChildren: '../../../components/reviews/reviews.module#ReviewModule'
+        path: 'reviews', loadChildren: '../../../components/reviews/reviews.module#ReviewsModule'
       }
 
     ]
