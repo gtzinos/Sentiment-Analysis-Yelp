@@ -13,6 +13,9 @@ export const routes: Routes = [
       },
       {
         path: 'about', loadChildren: '../../../components/about/about.module#AboutModule'
+      },
+      {
+        path: 'lexicons', loadChildren: '../../../components/lexicons/lexicons.module#LexiconsModule'
       }
 
     ]

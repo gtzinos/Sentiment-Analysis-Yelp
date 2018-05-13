@@ -17,11 +17,11 @@ export class ResponsiveTemplateComponent implements OnDestroy {
     },
     {
       title: "Plots",
-      url: "/plots",
+      url: "/lexicons",
       children: [
         {
           title: "Lexicons",
-          url: "lexicons"
+          url: "/lexicons"
         }
       ]
     },
