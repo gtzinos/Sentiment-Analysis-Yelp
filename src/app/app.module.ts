@@ -11,11 +11,7 @@ import { TableComponent } from './components/table/table.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    FwordsComponent,
-    ReviewsComponent,
-    AlgorithmComponent,
-    TableComponent,
+    AppComponent
   ],
   imports: [
     BrowserAnimationsModule,
