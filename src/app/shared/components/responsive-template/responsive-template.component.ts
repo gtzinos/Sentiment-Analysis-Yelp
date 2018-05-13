@@ -26,7 +26,7 @@ export class ResponsiveTemplateComponent implements OnDestroy {
       ]
     },
     {
-      title: "Comparing Algorithms",
+      title: "Compare Algorithms",
       url: "/compare",
       children: [
 
