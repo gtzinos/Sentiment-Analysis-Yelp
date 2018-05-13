@@ -19,3 +19,8 @@
 .developer-title{
   min-width: 150px;
 }
+
+a .action{
+  width: 30px;
+  height: 30px;
+}

@@ -14,15 +14,20 @@
       </p>
     </mat-card-content>
     <mat-card-actions>
-      <a mat-fab color="primary" *ngIf="developer.social" [href]="developer.social" target="_blank">
-        <mat-icon>
-            group
+      <a class="action" mat-fab color="primary" *ngIf="developer.social" [href]="developer.social" target="_blank">
+        <mat-icon md-24>
+          group
         </mat-icon>
       </a>
-      <a mat-fab color="primary" *ngIf="developer.website" [href]="developer.website" target="_blank">
-          <mat-icon>
-              public
-          </mat-icon>
+      <a class="action" mat-fab color="primary" *ngIf="developer.website" [href]="developer.website" target="_blank">
+        <mat-icon md-24>
+          public
+        </mat-icon>
+      </a>
+      <a class="action" mat-fab color="primary" *ngIf="developer.email" [href]="developer.email" target="_blank">
+        <mat-icon md-24>
+          alternate_email
+        </mat-icon>
       </a>
     </mat-card-actions>
   </mat-card>
