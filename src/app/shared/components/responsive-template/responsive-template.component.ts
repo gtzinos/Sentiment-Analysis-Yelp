@@ -38,8 +38,8 @@ export class ResponsiveTemplateComponent implements OnDestroy {
       url: "/table"
     },
     {
-      title: "Compare Algorithms",
-      url: "/compare",
+      title: "Models Evaluation",
+      url: "/evaluation",
       children: [
         {
           title: "Algorithm 1",
