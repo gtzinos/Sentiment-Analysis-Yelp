@@ -1,3 +1,10 @@
-<p>
-  reviews works!
-</p>
+<h1>Pie Chart</h1>
+
+<div style="display: block; width: 500px; height: 500px;">
+  <canvas baseChart
+          [data]="pieChartData"
+          [labels]="pieChartLabels"
+          [chartType]="pieChartType"
+          (chartHover)="chartHovered($event)"
+          (chartClick)="chartClicked($event)"></canvas>
+</div>

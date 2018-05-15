@@ -6,11 +6,14 @@ import { RouterModule } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { ChartsModule } from 'ng2-charts/ng2-charts'
+import { Chart } from 'chart.js'
 
 @NgModule({
   imports: [
     CommonModule,MatIconModule,MatCardModule, FormsModule, MatButtonModule,
-    RouterModule.forChild([{path: '', component: ReviewsComponent}])
+    RouterModule.forChild([{path: '', component: ReviewsComponent}]),
+    ChartsModule
   ],
   declarations: [ReviewsComponent]
 })

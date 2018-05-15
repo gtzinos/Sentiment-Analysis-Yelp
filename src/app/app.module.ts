@@ -10,6 +10,7 @@ import { AlgorithmComponent } from './components/algorithm/algorithm.component';
 import { TableComponent } from './components/table/table.component';
 import { OverlayModule } from '@angular/cdk/overlay';
 
+
 @NgModule({
   declarations: [
     AppComponent
@@ -25,6 +26,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
         }
       ]
     }])
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
