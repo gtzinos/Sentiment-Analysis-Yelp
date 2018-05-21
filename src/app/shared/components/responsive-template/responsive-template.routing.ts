@@ -3,7 +3,7 @@ import { ResponsiveTemplateComponent } from './responsive-template.component';
 
 
 export const routes: Routes = [
- {
+  {
     path: '', component: ResponsiveTemplateComponent, children: [
       {
         path: '', redirectTo: 'home', pathMatch: 'full'
@@ -18,7 +18,13 @@ export const routes: Routes = [
         path: 'lexicons', loadChildren: '../../../components/lexicons/lexicons.module#LexiconsModule'
       },
       {
-        path: 'table', loadChildren: '../../../components/table/table.module#TableModule'
+        path: 'restaurants', loadChildren: '../../../components/tables/restaurants/restaurants.module#RestaurantsModule'
+      },
+      {
+        path: 'reviews', loadChildren: '../../../components/tables/reviews/reviews.module#ReviewsModule'
+      },
+      {
+        path: 'users', loadChildren: '../../../components/tables/users/users.module#UsersModule'
       },
       {
         path: 'reviews', loadChildren: '../../../components/reviews/reviews.module#ReviewsModule'

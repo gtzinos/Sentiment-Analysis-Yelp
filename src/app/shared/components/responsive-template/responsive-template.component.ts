@@ -1,5 +1,5 @@
 import { Component, OnInit, ChangeDetectorRef, OnDestroy } from '@angular/core';
-import {MediaMatcher} from '@angular/cdk/layout';
+import { MediaMatcher } from '@angular/cdk/layout';
 import { Router } from '@angular/router';
 
 @Component({
@@ -35,7 +35,21 @@ export class ResponsiveTemplateComponent implements OnDestroy {
     },
     {
       title: "Tables",
-      url: "/table"
+      url: "/restaurants",
+      children: [
+        {
+          title: "Restaurants",
+          url: "/restaurants"
+        },
+        {
+          title: "Reviews",
+          url: "/reviews"
+        },
+        {
+          title: "Users",
+          url: "/users"
+        }
+      ]
     },
     {
       title: "Models Evaluation",

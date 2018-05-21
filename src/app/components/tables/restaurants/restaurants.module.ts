@@ -1,17 +1,17 @@
 import { FormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TableComponent } from './table.component';
 import { RouterModule } from '@angular/router';
 import {MatCardModule} from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { RestaurantsComponent } from './restaurants.component';
 
 @NgModule({
   imports: [
     CommonModule,MatIconModule,MatCardModule, FormsModule, MatButtonModule,
-    RouterModule.forChild([{path: '', component: TableComponent}])
+    RouterModule.forChild([{path: '', component: RestaurantsComponent}])
   ],
-  declarations: [TableComponent]
+  declarations: [RestaurantsComponent]
 })
-export class TableModule { }
+export class RestaurantsModule { }
