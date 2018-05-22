@@ -1,4 +1,4 @@
-
+import pymongo
 from .databaseTable import DatabaseTable
 
 class Reviews(DatabaseTable):
@@ -29,5 +29,25 @@ class Reviews(DatabaseTable):
             review['user_name'] = db['users'].find_one({'user_id': review['user_id']})['name']
 
         return filtered
+
+
+    def find_top_reviews(self, db, num):
+        reviews = db[self.name].aggregate([ {
+            "$group":
+              {
+                "_id": "$_id",
+                "totalUseful": { "$sum": "$useful" }
+              },
+          }, {"$sort": {"totalUseful": -1}}, {"$limit": 10}
+        ])
+
+        reviews = list(reviews)
+
+        for review in reviews:
+            review['text'] = db[self.name].find_one({'_id': review['_id']})['text']
+
+        return reviews
+
+
 
 

@@ -8,6 +8,7 @@ import { FwordsComponent } from './components/fwords/fwords.component';
 import { ReviewsComponent } from './components/reviews/reviews.component';
 import { AlgorithmComponent } from './components/algorithm/algorithm.component';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { OverlayModule } from '@angular/cdk/overlay';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
+    HttpClientModule,
     OverlayModule,
     RouterModule.forRoot([{
       path: '', component: AppComponent, children: [

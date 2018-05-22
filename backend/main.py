@@ -12,7 +12,6 @@ from bson.json_util import dumps
 db = openConnection(db_hostname, db_name, db_port)
 
 app = Flask(__name__)
-
 app.Debug = True
 
 
@@ -63,11 +62,11 @@ def restaurants():
 def reviews():
     db = openConnection(db_hostname, db_name, db_port)
 
-    reviews = Reviews(name = db_reviews_table_name).find_count(db, 10)
+    reviews = Reviews(name = db_reviews_table_name).find_top_reviews(db, 10)
 
     output = []
-    for rest in reviews:
-        output.append(rest)
+    for review in reviews:
+        output.append({"text": str(review['text']), "totalUseful": review['totalUseful']})
 
     return jsonify(output)
 
@@ -75,11 +74,11 @@ def reviews():
 def users():
     db = openConnection(db_hostname, db_name, db_port)
 
-    users = Users(name = db_users_table_name).find_count(db, 10)
+    users = Users(name = db_users_table_name).find_top_users(db, 10)
 
     output = []
-    for rest in users:
-        output.append(rest)
+    for user in users:
+        output.append({"name": str(user['name']), "totalUseful": user['totalUseful'], "fans": user['fans']})
 
     return jsonify(output)
 
