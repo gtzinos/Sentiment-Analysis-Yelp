@@ -34,7 +34,7 @@ export class ResponsiveTemplateComponent implements OnDestroy {
       ]
     },
     {
-      title: "Tables",
+      title: "Top 10",
       url: "/restaurants",
       children: [
         {
