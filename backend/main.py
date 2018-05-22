@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, jsonify, request
 from config.database import *
 from dbQueries.connect import *
 from dbQueries.restaurants import *
@@ -7,8 +7,14 @@ from dbQueries.users import *
 from dataAnalysis.filterData import *
 from dataAnalysis.plots import *
 from dataAnalysis.training import *
+from bson.json_util import dumps
 
 db = openConnection(db_hostname, db_name, db_port)
+
+app = Flask(__name__)
+
+app.Debug = True
+
 
 def preprocessing(dataList, fieldNames):
     for fieldName in fieldNames:
@@ -41,8 +47,43 @@ def main():
     #seaborn(data)
 
 
-#top = find_count(db, "reviews")
+@app.route("/restaurants")
+def restaurants():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants(name = db_restaurants_table_name).find_top_restaurants(db, 10)
+
+    output = []
+    for rest in restaurants:
+        output.append(rest)
+
+    return jsonify(output)
+
+@app.route("/reviews")
+def reviews():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    reviews = Reviews(name = db_reviews_table_name).find_count(db, 10)
+
+    output = []
+    for rest in reviews:
+        output.append(rest)
+
+    return jsonify(output)
+
+@app.route("/users")
+def users():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    users = Users(name = db_users_table_name).find_count(db, 10)
+
+    output = []
+    for rest in users:
+        output.append(rest)
+
+    return jsonify(output)
+
 
 #print(top)
-if __name__ == "__main__":
-    main()
+#if __name__ == "__main__":
+    #main()
