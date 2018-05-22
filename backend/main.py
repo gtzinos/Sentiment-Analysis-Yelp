@@ -1,7 +1,12 @@
 from flask import Flask, render_template
-from config import *
-from db_queries import *
-from data_analysis import *
+from config.database import *
+from dbQueries.connect import *
+from dbQueries.restaurants import *
+from dbQueries.reviews import *
+from dbQueries.users import *
+from dataAnalysis.filterData import *
+from dataAnalysis.plots import *
+from dataAnalysis.training import *
 
 db = openConnection(db_hostname, db_name, db_port)
 

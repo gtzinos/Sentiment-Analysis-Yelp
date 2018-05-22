@@ -1,5 +1,5 @@
 import pymongo
-from database_table import DatabaseTable
+from .databaseTable import DatabaseTable
 
 class Restaurants(DatabaseTable):
 

@@ -1,5 +1,5 @@
 
-from database_table import DatabaseTable
+from .databaseTable import DatabaseTable
 
 class Reviews(DatabaseTable):
     def __init__(self, name):
