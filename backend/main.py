@@ -106,6 +106,14 @@ def getRestaurantsByWifi():
     reviews = Restaurants(name=db_restaurants_table_name).get_restaurants_by_wifi(db)
 
     return jsonify(reviews)
+
+@app.route("/users-per-year")
+def getUsersPerYear():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    users = Users(name=db_users_table_name).get_users_per_year(db,15)
+
+    return jsonify(users)
 # print(top)
 # if __name__ == "__main__":
     # main()
