@@ -99,6 +99,13 @@ def getReviewsNumberByYear():
 
     return jsonify(reviews)
 
+@app.route("/restaurants-by-wifi")
+def getRestaurantsByWifi():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    reviews = Restaurants(name=db_restaurants_table_name).get_restaurants_by_wifi(db)
+
+    return jsonify(reviews)
 # print(top)
 # if __name__ == "__main__":
     # main()

@@ -70,7 +70,6 @@ class Reviews(DatabaseTable):
         ])
 
         reviews = list(reviews)
-
         output = []
         for review in reviews:
             if '_id' in review:
