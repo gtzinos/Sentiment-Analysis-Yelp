@@ -38,7 +38,9 @@ export const routes: Routes = [
       {
         path: 'users-per-year', loadChildren: '../../../components/plots/users-per-year/users-per-year.module#UsersPerYearModule'
       },
-
+      {
+        path: 'maps', loadChildren: '../../../components/maps/maps.module#MapsModule'
+      }
     ]
   }
 ]

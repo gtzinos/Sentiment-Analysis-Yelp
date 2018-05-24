@@ -62,9 +62,14 @@ export class ResponsiveTemplateComponent implements OnDestroy {
       ]
     },
     {
+      title:"Maps",
+      url:"/maps"
+    },
+    {
       title: "About",
       url: "/about"
     }
+    
   ]
 
   private _mobileQueryListener: () => void;
