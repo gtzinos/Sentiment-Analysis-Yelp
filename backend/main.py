@@ -95,7 +95,7 @@ def users():
 def getReviewsNumberByYear():
     db = openConnection(db_hostname, db_name, db_port)
 
-    reviews = Reviews(name=db_reviews_table_name).get_reviews_per_year(db, 10)
+    reviews = Reviews(name=db_reviews_table_name).get_reviews_per_year(db, 13)
 
     return jsonify(reviews)
 
