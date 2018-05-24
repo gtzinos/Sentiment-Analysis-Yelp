@@ -61,7 +61,10 @@ class Reviews(DatabaseTable):
                 {
                     "_id": {"$year": {"$dateFromString": {"dateString": "$date"}}},
                     "count": {"$sum": 1},
-                    "useful": {"$sum": "$useful"}
+                    "useful": {"$sum": "$useful"},
+                    "avg_useful": {"$avg": "$useful"},
+                    "stars": {"$sum": "$stars"},
+                    "avg_stars": {"$avg": "$stars"}
                 },
             }, {"$sort": {"_id": 1}}, {"$limit": num}
         ])
@@ -72,6 +75,14 @@ class Reviews(DatabaseTable):
         for review in reviews:
             if '_id' in review:
                 output.append(
-                    {"id": str(review['_id']), "count": review['count'], "useful": review['useful']})
+                    {
+                        "id": str(review['_id']),
+                        "count": review['count'],
+                        "useful": review['useful'],
+                        "avg_useful": review['avg_useful'],
+                        "stars": review['stars'],
+                        "avg_stars": review['avg_stars']
+                    }
+                )
 
         return output
