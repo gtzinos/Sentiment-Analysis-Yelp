@@ -1,3 +1,2 @@
-<div class="chart-wrapper">
-  <canvas #usersCountChart width="400" height="400"></canvas>
-</div>
+<chart-element *ngIf="users && users.length > 0"
+  [graphConfiguration]="graphConfigurations" [data]="users"></chart-element>
