@@ -1,12 +1,12 @@
 from flask import Flask, jsonify, request
-from config.database import *
-from dbQueries.connect import *
-from dbQueries.restaurants import *
-from dbQueries.reviews import *
-from dbQueries.users import *
-from dataAnalysis.filterData import *
-from dataAnalysis.plots import *
-from dataAnalysis.training import *
+from backend.config.database import *
+from backend.dbQueries.connect import *
+from backend.dbQueries.restaurants import *
+from backend.dbQueries.reviews import *
+from backend.dbQueries.users import *
+from backend.dataAnalysis.filterData import *
+from backend.dataAnalysis.plots import *
+from backend.dataAnalysis.training import *
 from bson.json_util import dumps
 
 db = openConnection(db_hostname, db_name, db_port)
