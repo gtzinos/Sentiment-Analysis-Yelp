@@ -28,8 +28,8 @@ export class ResponsiveTemplateComponent implements OnDestroy {
           url: "/restaurants-by-wifi"
         },
         {
-          title: "Revies Per Month",
-          url: "/reviews"
+          title: "Users Per Year",
+          url: "/users-per-year"
         }
       ]
     },
