@@ -1,6 +1,7 @@
 import pymongo
 from .databaseTable import DatabaseTable
 
+
 class Reviews(DatabaseTable):
     def __init__(self, name):
         DatabaseTable.__init__(self, name)
@@ -10,14 +11,17 @@ class Reviews(DatabaseTable):
         random_reviews = list(random_reviews)
 
         for review in random_reviews:
-            review['restaurant_name'] = db['restaurants'].find_one({'business_id': review['business_id']})['name']
-            review['user_name'] = db['users'].find_one({'user_id': review['user_id']})['name']
+            review['restaurant_name'] = db['restaurants'].find_one(
+                {'business_id': review['business_id']})['name']
+            review['user_name'] = db['users'].find_one(
+                {'user_id': review['user_id']})['name']
         return random_reviews
 
-    #stars != 3
-    def get_filtered_reviews(self, db, useful = 1, limit = None):
+    # stars != 3
+    def get_filtered_reviews(self, db, useful=1, limit=None):
 
-        filtered = db[self.name].find({"stars" : {"$ne": 3}, "useful": {"$gte": useful}})
+        filtered = db[self.name].find(
+            {"stars": {"$ne": 3}, "useful": {"$gte": useful}})
 
         if limit != None:
             filtered.limit(limit)
@@ -25,29 +29,49 @@ class Reviews(DatabaseTable):
         filtered = list(filtered)
 
         for review in filtered:
-            review['restaurant_name'] = db['restaurants'].find_one({'business_id': review['business_id']})['name']
-            review['user_name'] = db['users'].find_one({'user_id': review['user_id']})['name']
+            review['restaurant_name'] = db['restaurants'].find_one(
+                {'business_id': review['business_id']})['name']
+            review['user_name'] = db['users'].find_one(
+                {'user_id': review['user_id']})['name']
 
         return filtered
 
-
     def find_top_reviews(self, db, num):
-        reviews = db[self.name].aggregate([ {
+        reviews = db[self.name].aggregate([{
             "$group":
-              {
+            {
                 "_id": "$_id",
-                "totalUseful": { "$sum": "$useful" }
-              },
-          }, {"$sort": {"totalUseful": -1}}, {"$limit": 10}
+                "totalUseful": {"$sum": "$useful"}
+            },
+        }, {"$sort": {"totalUseful": -1}}, {"$limit": num}
         ])
 
         reviews = list(reviews)
 
         for review in reviews:
-            review['text'] = db[self.name].find_one({'_id': review['_id']})['text']
+            review['text'] = db[self.name].find_one(
+                {'_id': review['_id']})['text']
 
         return reviews
 
+    def get_reviews_per_year(self, db, num):
+        reviews = db[self.name].aggregate([
+            {
+                "$group":
+                {
+                    "_id": {"$year": {"$dateFromString": {"dateString": "$date"}}},
+                    "count": {"$sum": 1},
+                    "useful": {"$sum": "$useful"}
+                },
+            }, {"$sort": {"_id": 1}}, {"$limit": num}
+        ])
 
+        reviews = list(reviews)
 
+        output = []
+        for review in reviews:
+            if '_id' in review:
+                output.append(
+                    {"id": str(review['_id']), "count": review['count'], "useful": review['useful']})
 
+        return output

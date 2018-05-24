@@ -8,12 +8,14 @@ from dataAnalysis.filterData import *
 from dataAnalysis.plots import *
 from dataAnalysis.training import *
 from bson.json_util import dumps
+from flask_cors import CORS
 
 db = openConnection(db_hostname, db_name, db_port)
 
 app = Flask(__name__)
 app.Debug = True
 
+CORS(app)
 
 def preprocessing(dataList, fieldNames):
     for fieldName in fieldNames:
@@ -31,26 +33,28 @@ def preprocessing(dataList, fieldNames):
 
     return dataList
 
+
 def main():
     global db
 
-    reviews = Reviews(name = db_reviews_table_name)
+    reviews = Reviews(name=db_reviews_table_name)
 
-    data = reviews.get_filtered_reviews(db,1, 10)
+    data = reviews.get_filtered_reviews(db, 1, 10)
 
     print(data)
 
     data = preprocessing(data, ["text"])
 
     print(data)
-    #seaborn(data)
+    # seaborn(data)
 
 
 @app.route("/restaurants")
 def restaurants():
     db = openConnection(db_hostname, db_name, db_port)
 
-    restaurants = Restaurants(name = db_restaurants_table_name).find_top_restaurants(db, 10)
+    restaurants = Restaurants(
+        name=db_restaurants_table_name).find_top_restaurants(db, 10)
 
     output = []
     for rest in restaurants:
@@ -58,31 +62,43 @@ def restaurants():
 
     return jsonify(output)
 
+
 @app.route("/reviews")
 def reviews():
     db = openConnection(db_hostname, db_name, db_port)
 
-    reviews = Reviews(name = db_reviews_table_name).find_top_reviews(db, 10)
+    reviews = Reviews(name=db_reviews_table_name).find_top_reviews(db, 10)
 
     output = []
     for review in reviews:
-        output.append({"text": str(review['text']), "totalUseful": review['totalUseful']})
+        output.append(
+            {"text": str(review['text']), "totalUseful": review['totalUseful']})
 
     return jsonify(output)
+
 
 @app.route("/users")
 def users():
     db = openConnection(db_hostname, db_name, db_port)
 
-    users = Users(name = db_users_table_name).find_top_users(db, 10)
+    users = Users(name=db_users_table_name).find_top_users(db, 10)
 
     output = []
     for user in users:
-        output.append({"name": str(user['name']), "totalUseful": user['totalUseful'], "fans": user['fans']})
+        output.append({"name": str(
+            user['name']), "totalUseful": user['totalUseful'], "fans": user['fans']})
 
     return jsonify(output)
 
 
-#print(top)
-#if __name__ == "__main__":
-    #main()
+@app.route("/reviews-per-year")
+def getReviewsNumberByYear():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    reviews = Reviews(name=db_reviews_table_name).get_reviews_per_year(db, 10)
+
+    return jsonify(reviews)
+
+# print(top)
+# if __name__ == "__main__":
+    # main()

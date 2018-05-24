@@ -28,6 +28,9 @@ export const routes: Routes = [
       },
       {
         path: 'reviews', loadChildren: '../../../components/reviews/reviews.module#ReviewsModule'
+      },
+      {
+        path: 'reviews-per-year', loadChildren: '../../../components/plots/reviews-per-year/reviews-per-year.module#ReviewsPerYearModule'
       }
 
     ]
