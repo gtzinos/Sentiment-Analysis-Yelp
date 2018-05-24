@@ -24,8 +24,8 @@ export class ResponsiveTemplateComponent implements OnDestroy {
           url: "/reviews-per-year"
         },
         {
-          title: "Frequent Words",
-          url: "/fwords"
+          title: "Restaurants By Wifi",
+          url: "/restaurants-by-wifi"
         },
         {
           title: "Revies Per Month",

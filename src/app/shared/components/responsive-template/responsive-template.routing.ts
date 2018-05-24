@@ -31,6 +31,9 @@ export const routes: Routes = [
       },
       {
         path: 'reviews-per-year', loadChildren: '../../../components/plots/reviews-per-year/reviews-per-year.module#ReviewsPerYearModule'
+      },
+      {
+        path: 'restaurants-by-wifi', loadChildren: '../../../components/plots/restaurants-by-wifi/restaurants-by-wifi.module#RestaurantsByWifiModule'
       }
 
     ]
