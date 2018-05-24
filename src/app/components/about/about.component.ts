@@ -48,7 +48,7 @@ export class AboutComponent implements OnInit {
       email: "mailto:gtzinosv@csd.auth.gr"
     }];
 
-    for (var i = 0; i < randomDevs.length; i++) {
+    for (var i = randomDevs.length - 1; i >= 0; i--) {
       this.developers.push(randomDevs.splice(randomDevs.length * Math.random() | 0, 1)[0]);
     }
   }
