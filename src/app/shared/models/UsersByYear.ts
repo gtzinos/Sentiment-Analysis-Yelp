@@ -1,0 +1,37 @@
+export class UsersByYear {
+  average_stars: number;
+  avg_compliment_cool: number;
+  avg_compliment_cute: number;
+  avg_compliment_funny: number;
+  avg_compliment_hot: number;
+  avg_compliment_list: number;
+  avg_compliment_more: number;
+  avg_compliment_note: number;
+  avg_compliment_photos: number;
+  avg_compliment_plain: number;
+  avg_compliment_profile: number;
+  avg_compliment_writer: number;
+  avg_cool: number;
+  avg_fans: number;
+  avg_funny: number;
+  avg_review_count: number;
+  avg_useful: number;
+  compliment_cool: number;
+  compliment_cute: number;
+  compliment_funny: number;
+  compliment_hot: number;
+  compliment_list: number;
+  compliment_more: number;
+  compliment_note: number;
+  compliment_photos: number;
+  compliment_plain: number;
+  compliment_profile: number;
+  compliment_writer: number;
+  cool: number;
+  count: number;
+  fans: number;
+  funny: number;
+  id: number;
+  review_count: number;
+  useful: number;
+}
