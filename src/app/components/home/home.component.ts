@@ -1,8 +1,8 @@
-import { Predictions } from './../../shared/models/Predictions';
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
+import { Predictions } from '../../shared/models/Predictions';
 
 @Component({
   selector: 'app-home',
@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
     if (this.searchDisabled) {
       this.snackBar.open('Please wait to complete the previous request', "OK", { duration: 3000 });
     }
-    else if(!this.reviewText) {
+    else if (!this.reviewText) {
       this.snackBar.open('Empty term.', "OK", { duration: 3000 });
     }
     else {
@@ -41,6 +41,9 @@ export class HomeComponent implements OnInit {
       promises.push(this.http.post(environment.api + "/cnn", { term: this.reviewText }).toPromise());
 
       Promise.all(promises).then(results => {
+        results.forEach(result => {
+          this.predictions[result.algorithm] = result.prediction;
+        });
         this.searchDisabled = false;
       }, error => {
         this.searchDisabled = false;

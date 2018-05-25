@@ -148,7 +148,7 @@ def getCNNPrediction():
 
     prediction = 1 #TODO ADD CNN Function
 
-    return jsonify({"prediction": prediction})
+    return jsonify({"algorithm": "cnn", "prediction": prediction})
 # print(top)
 # if __name__ == "__main__":
     # main()
