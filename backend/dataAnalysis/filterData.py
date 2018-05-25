@@ -47,6 +47,9 @@ def normalize_array(array, indexes):
 
     return array
 
+def remove_non_words(text):
+    return re.sub(r'\W+', '', text)
+
 def tokenization(text):
     tknzr = TweetTokenizer()
     return tknzr.tokenize(text)

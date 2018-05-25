@@ -30,6 +30,10 @@ export class ResponsiveTemplateComponent implements OnDestroy {
         {
           title: "Users Per Year",
           url: "/users-per-year"
+        },
+        {
+          title: "Top Word Count",
+          url: "/top-words"
         }
       ]
     },
@@ -69,7 +73,7 @@ export class ResponsiveTemplateComponent implements OnDestroy {
       title: "About",
       url: "/about"
     }
-    
+
   ]
 
   private _mobileQueryListener: () => void;
