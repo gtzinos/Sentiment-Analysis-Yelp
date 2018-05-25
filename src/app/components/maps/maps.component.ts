@@ -9,21 +9,24 @@ export class MapsComponent implements OnInit {
 
   title: string = 'Los Angeles Restaurants';
 
-  lat: number = 51.678418;
-  lng: number = 7.809007;
+  lat: number = 34.0201613;
+  lng: number = -118.6919205;
 
   coordinates: any[] = [
     {
-      "lat": 51.678418,
-      "lng": 7.809007
+      "label":"test",
+      "lat": 34.1201613,
+      "lng": -118.0919205
     },
     {
-      "lat": 51.178418,
-      "lng": 8.809007
+      "label":"test",
+      "lat": 33.9201613,
+      "lng": -118.9919205
     },
     {
-      "lat": 53.678418,
-      "lng": 7.009007
+      "label":"test",
+      "lat": 34.5201613,
+      "lng": -117.6919205
     }
   ]
 

@@ -1,29 +1,54 @@
 <h1>{{ title }}</h1>
 
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng"></agm-marker>
+  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true"
+    [markerClickable]="true">
+    <agm-info-window>
+      <div>{{cord.label}}</div>
+    </agm-info-window>
+  </agm-marker>
 </agm-map>
 
 <h1>Map 1</h1>
 
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng"></agm-marker>
+  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true"
+    [markerClickable]="true">
+    <agm-info-window>
+      <div>{{cord.label}}</div>
+    </agm-info-window>
+  </agm-marker>
 </agm-map>
 
 <h1>Map 2</h1>
 
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng"></agm-marker>
+  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true"
+    [markerClickable]="true">
+    <agm-info-window>
+      <div>{{cord.label}}</div>
+    </agm-info-window>
+  </agm-marker>
 </agm-map>
 
 <h1>Map 3</h1>
 
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng"></agm-marker>
+  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true"
+    [markerClickable]="true">
+    <agm-info-window>
+      <div>{{cord.label}}</div>
+    </agm-info-window>
+  </agm-marker>
 </agm-map>
 
 <h1>Map 4</h1>
 
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng"></agm-marker>
+  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true"
+    [markerClickable]="true">
+    <agm-info-window>
+      <div>{{cord.label}}</div>
+    </agm-info-window>
+  </agm-marker>
 </agm-map>
