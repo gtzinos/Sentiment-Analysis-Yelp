@@ -114,6 +114,14 @@ def getUsersPerYear():
     users = Users(name=db_users_table_name).get_users_per_year(db,15)
 
     return jsonify(users)
+
+@app.route("/cnn", methods=['POST'])
+def getCNNPrediction():
+    termToClassify = request.get_json().get('term')
+
+    prediction = 1 #TODO ADD CNN Function
+
+    return jsonify({"prediction": prediction})
 # print(top)
 # if __name__ == "__main__":
     # main()
