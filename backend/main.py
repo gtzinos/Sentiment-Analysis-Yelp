@@ -10,6 +10,10 @@ from backend.dataAnalysis.training import *
 from bson.json_util import dumps
 from flask_cors import CORS
 
+
+import pip
+print(pip.__version__)
+
 db = openConnection(db_hostname, db_name, db_port)
 
 app = Flask(__name__)

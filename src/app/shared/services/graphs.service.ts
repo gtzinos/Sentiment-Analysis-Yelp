@@ -32,7 +32,7 @@ export class GraphsService {
     };
   }
 
-  createChart(graphConf: GraphConfiguration, dataArray) {
+  createChart(graphConf: GraphConfiguration, dataArray, colors: [string]) {
     let data = this.getData(dataArray, graphConf.graphDataConfiguration);
     let graphsData = data.graphsData;
     let labels = data.labels;
@@ -45,12 +45,7 @@ export class GraphsService {
         {
           "label": graphConf.chartLabel,
           "data": graphsData[graphConf.graphDataConfiguration.id],
-          "backgroundColor": [
-            "#F08080",
-            "#696969",
-            "#1fc8f8",
-            "#76a346"
-          ]
+          "backgroundColor": colors
         }]
     };
 

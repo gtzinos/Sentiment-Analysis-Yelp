@@ -39,6 +39,9 @@ export const routes: Routes = [
         path: 'users-per-year', loadChildren: '../../../components/plots/users-per-year/users-per-year.module#UsersPerYearModule'
       },
       {
+        path: 'top-words', loadChildren: '../../../components/plots/word-count/word-count.module#WordCountModule'
+      },
+      {
         path: 'maps', loadChildren: '../../../components/maps/maps.module#MapsModule'
       }
     ]
