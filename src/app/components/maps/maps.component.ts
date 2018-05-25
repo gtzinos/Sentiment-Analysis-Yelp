@@ -12,11 +12,17 @@ export class MapsComponent implements OnInit {
   lat: number = 34.0201613;
   lng: number = -118.6919205;
 
-  title1="test"
-  title2="test"
-  title3="test"
-  title4="test"
-  title5="test"
+  title1="5 stars restaurants"
+  title2="Has free WiFi"
+  title3="Suitable for kids"
+  title4="Accepts credid card for payment"
+  title5="Noise level: quiet"
+  title6="Restaurants with outdor seating"
+  title7="Reastaurants with delivery suport"
+  title8="Restaurants with free WiFi and TV"
+  title9="Wheel chair accessible restaurants with outdor seating"
+  title10="Restaurants which accepts reservation and credid card for payment"
+  
   coordinates: any[] = [
     {
       "label":"test",
