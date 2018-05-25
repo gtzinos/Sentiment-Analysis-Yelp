@@ -1,12 +1,17 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MapsComponent } from './maps.component';
 import { RouterModule } from '@angular/router';
+import { NgModule, ApplicationRef } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
+import { AgmCoreModule } from '@agm/core';
 @NgModule({
   imports: [
-    CommonModule,
-    RouterModule.forChild([{path: '', component: MapsComponent}])
+    CommonModule,FormsModule,
+    RouterModule.forChild([{path: '', component: MapsComponent}]),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyB32E-_zcqUHqw4QZ07ZflxDVElGUZ033I'
+    })
   ],
   declarations: [MapsComponent]
 })

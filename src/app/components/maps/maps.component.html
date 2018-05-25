@@ -1,3 +1,5 @@
-<p>
-  Maps Works
-</p>
+<h1>{{ title }}</h1>
+
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng"></agm-marker>
+</agm-map>
