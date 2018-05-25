@@ -7,10 +7,11 @@ import { MatCardModule } from '@angular/material/card';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 @NgModule({
   imports: [
-    CommonModule, MatInputModule, MatDividerModule, MatListModule, ReactiveFormsModule, FormsModule, MatCardModule,
+    CommonModule, MatInputModule,MatSnackBarModule, MatDividerModule, MatListModule, ReactiveFormsModule, FormsModule, MatCardModule,
     RouterModule.forChild([{ path: '', component: HomeComponent }])
   ],
   declarations: [HomeComponent]

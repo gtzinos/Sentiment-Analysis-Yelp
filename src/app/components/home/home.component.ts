@@ -2,6 +2,7 @@ import { Predictions } from './../../shared/models/Predictions';
 import { environment } from './../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-home',
@@ -10,27 +11,41 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
   public reviewText;
+  public searchDisabled: boolean;
 
   public predictions: Predictions;
 
-  constructor(public http: HttpClient) { }
+  constructor(public http: HttpClient, public snackBar: MatSnackBar) {
+    this.predictions = new Predictions();
+  }
 
   ngOnInit() {
   }
 
   search() {
-    this.predictions = new Predictions();
+    delete this.predictions.cnn;
 
-    this.http.post(environment.api + "/cnn", {term: this.reviewText}).subscribe(results => {
-      this.predictions.cnn = results['prediction'];
-    })
+    if (this.searchDisabled) {
+      this.snackBar.open('Please wait to complete the previous request', "OK", { duration: 3000 });
+    }
+    else if(!this.reviewText) {
+      this.snackBar.open('Empty term.', "OK", { duration: 3000 });
+    }
+    else {
+      this.searchDisabled = true;
 
-    this.http.post(environment.api + "/cnn", {term: this.reviewText}).subscribe(results => {
-      this.predictions.cnn = results['prediction'];
-    })
+      let promises = [];
 
-    this.http.post(environment.api + "/cnn", {term: this.reviewText}).subscribe(results => {
-      this.predictions.cnn = results['prediction'];
-    })
+      promises.push(this.http.post(environment.api + "/cnn", { term: this.reviewText }).toPromise());
+      promises.push(this.http.post(environment.api + "/cnn", { term: this.reviewText }).toPromise());
+      promises.push(this.http.post(environment.api + "/cnn", { term: this.reviewText }).toPromise());
+
+      Promise.all(promises).then(results => {
+        this.searchDisabled = false;
+      }, error => {
+        this.searchDisabled = false;
+      })
+    }
+
   }
 }
