@@ -1,54 +1,56 @@
-<h1>{{ title }}</h1>
+<h1 class="header">{{ title }}</h1>
+
+<h2>{{ title1 }}</h2>
 
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true"
-    [markerClickable]="true">
+  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true" [markerClickable]="true">
     <agm-info-window>
-      <div>{{cord.label}}</div>
+      <div class="title">{{cord.label}}</div>
+      <div>{{cord.stars}}</div>
     </agm-info-window>
   </agm-marker>
 </agm-map>
 
-<h1>Map 1</h1>
+<h2>{{ title2 }}</h2>
 
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true"
-    [markerClickable]="true">
+  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true" [markerClickable]="true">
     <agm-info-window>
-      <div>{{cord.label}}</div>
+      <div class="title">{{cord.label}}</div>
+      <div>{{cord.stars}}</div>
     </agm-info-window>
   </agm-marker>
 </agm-map>
 
-<h1>Map 2</h1>
+<h2>{{ title3 }}</h2>
 
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true"
-    [markerClickable]="true">
+  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true" [markerClickable]="true">
     <agm-info-window>
-      <div>{{cord.label}}</div>
+      <div class="title">{{cord.label}}</div>
+      <div>{{cord.stars}}</div>
     </agm-info-window>
   </agm-marker>
 </agm-map>
 
-<h1>Map 3</h1>
+<h2>{{ title4 }}</h2>
 
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true"
-    [markerClickable]="true">
+  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true" [markerClickable]="true">
     <agm-info-window>
-      <div>{{cord.label}}</div>
+      <div class="title">{{cord.label}}</div>
+      <div>{{cord.stars}}</div>
     </agm-info-window>
   </agm-marker>
 </agm-map>
 
-<h1>Map 4</h1>
+<h2>{{ title5 }}</h2>
 
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true"
-    [markerClickable]="true">
+  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true" [markerClickable]="true">
     <agm-info-window>
-      <div>{{cord.label}}</div>
+      <div class="title">{{cord.label}}</div>
+      <div>{{cord.stars}}</div>
     </agm-info-window>
   </agm-marker>
 </agm-map>
