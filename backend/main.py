@@ -1,15 +1,15 @@
-from flask import Flask, jsonify, request
-from backend.config.database import *
-from backend.dbQueries.connect import *
-from backend.dbQueries.restaurants import *
-from backend.dbQueries.reviews import *
-from backend.dbQueries.users import *
-from backend.dataAnalysis.filterData import *
-from backend.dataAnalysis.plots import *
-from backend.dataAnalysis.training import *
+from flask import Flask, json, Response, jsonify, request
+from config.database import *
+from dbQueries.connect import *
+from dbQueries.restaurants import *
+from dbQueries.reviews import *
+from dbQueries.users import *
+from dataAnalysis.filterData import *
+from dataAnalysis.plots import *
+from dataAnalysis.training import *
 from bson.json_util import dumps
 from flask_cors import CORS
-
+from config.http_codes import HttpCodes
 
 import pip
 print(pip.__version__)
@@ -131,22 +131,38 @@ def getTopWords():
 
     allReviewsTexts = ""
 
+    frequency = {}
+
     for review in reviews:
-        review['text'] = remove_non_words(review['text'])
         review['text'] = tokenization(review['text'])
-        review['text'] = remove_non_ascii(review['text'])
-        review['text'] = replace_numbers(review['text'])
         review['text'] = remove_stopwords(review['text'])
+        review['text'] = remove_non_words(review['text'])
 
-        review['text'] = ' '.join([" " + str(text) for text in review['text']])
+        for word in review['text']:
+            if word not in frequency:
+                frequency[word] = 0
 
-    return jsonify(reviews)
+            frequency[word] += 1
+
+    sortedArray = []
+
+    for key in frequency:
+        sortedArray.append({"id": key, "frequency": frequency[key]})
+
+    sortedArray = sorted(
+        sortedArray, key=lambda k: k['frequency'])
+    sortedLength = len(sortedArray)
+
+    return Response(json.dumps({"message": sortedArray[sortedLength - 21: sortedLength]}),
+                    status=HttpCodes.HTTP_OK_BASIC,
+                    mimetype='application/json')
+
 
 @app.route("/cnn", methods=['POST'])
 def getCNNPrediction():
     termToClassify = request.get_json().get('term')
 
-    prediction = 1 #TODO ADD CNN Function
+    prediction = 1  # TODO ADD CNN Function
 
     return jsonify({"algorithm": "cnn", "prediction": prediction})
 # print(top)

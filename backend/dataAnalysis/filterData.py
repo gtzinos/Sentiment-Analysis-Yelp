@@ -47,12 +47,21 @@ def normalize_array(array, indexes):
 
     return array
 
-def remove_non_words(text):
-    return re.sub(r'\W+', '', text)
+def remove_non_words(words):
+    new_words = []
+    for word in words:
+        filtered = re.sub(r'(?:https?|ftp|http):\/\/[\n\S]+', '', word)
+        filtered = re.sub(r'www\S+', '', filtered)
+        filtered = re.sub(r'[0-9]\S+', '', filtered)
+        filtered = re.sub(r'[^A-Za-z]\S+', '', filtered)
+        filtered = re.sub(r'\W+', '', filtered)
+        if len(filtered) > 1:
+            new_words.append(filtered)
+
+    return new_words
 
 def tokenization(text):
-    tknzr = TweetTokenizer()
-    return tknzr.tokenize(text)
+    return nltk.word_tokenize(text)
 
 def count_vectorizer(text):
     return CountVectorizer().build_tokenizer()(text)
@@ -100,7 +109,7 @@ def remove_stopwords(words):
     """Remove stop words from list of tokenized words"""
     new_words = []
     for word in words:
-        if word not in stopwords.words('english'):
+        if word not in stopwords.words('english') and word not in stopwords.words('italian') and word not in stopwords.words('french'):
             new_words.append(word)
     return new_words
 
