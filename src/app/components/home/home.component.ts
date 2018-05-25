@@ -21,15 +21,15 @@ export class HomeComponent implements OnInit {
   search() {
     this.predictions = new Predictions();
 
-    this.http.get(environment.api + "/cnn").subscribe(results => {
+    this.http.post(environment.api + "/cnn", {term: this.reviewText}).subscribe(results => {
       this.predictions.cnn = results['prediction'];
     })
 
-    this.http.get(environment.api + "/cnn").subscribe(results => {
+    this.http.post(environment.api + "/cnn", {term: this.reviewText}).subscribe(results => {
       this.predictions.cnn = results['prediction'];
     })
 
-    this.http.get(environment.api + "/cnn").subscribe(results => {
+    this.http.post(environment.api + "/cnn", {term: this.reviewText}).subscribe(results => {
       this.predictions.cnn = results['prediction'];
     })
   }
