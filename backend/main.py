@@ -135,8 +135,8 @@ def getTopWords():
 
     for review in reviews:
         review['text'] = tokenization(review['text'])
-        review['text'] = remove_stopwords(review['text'])
         review['text'] = remove_non_words(review['text'])
+        review['text'] = remove_stopwords(review['text'])
 
         for word in review['text']:
             if word not in frequency:

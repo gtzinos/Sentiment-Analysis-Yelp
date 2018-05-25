@@ -50,6 +50,7 @@ def normalize_array(array, indexes):
 def remove_non_words(words):
     new_words = []
     for word in words:
+        word = word.lower()
         filtered = re.sub(r'(?:https?|ftp|http):\/\/[\n\S]+', '', word)
         filtered = re.sub(r'www\S+', '', filtered)
         filtered = re.sub(r'[0-9]\S+', '', filtered)
