@@ -121,6 +121,20 @@ def getUsersPerYear():
 
     users = Users(name=db_users_table_name).get_users_per_year(db, 15)
 
+    closeConnection(db)
+
+    return jsonify(users)
+
+@app.route("/grouped-users-by", methods=['POST'])
+def getGroupedUsersBy():
+    fieldName = request.get_json().get('fieldName')
+
+    db = openConnection(db_hostname, db_name, db_port)
+
+    users = Users(name=db_users_table_name).get_users_grouped_by(db, fieldName)
+
+    closeConnection(db)
+
     return jsonify(users)
 
 @app.route("/top-words")
