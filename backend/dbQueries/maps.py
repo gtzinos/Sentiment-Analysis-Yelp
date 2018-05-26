@@ -22,3 +22,11 @@ class Maps(DatabaseTable):
     def find_wifi_restaurants(self, db, num):
         return db[self.name].find({'attributes.WiFi': 'free'}, {'_id':False,'name':True,'latitude':True, 
         'longitude':True, 'stars':True, 'neighborhood':True, 'address':True, 'attributes':True}).limit(num)
+
+    def find_good_for_kids(self, db, num):
+        return db[self.name].find({'attributes.GoodForKids': True}, {'_id':False,'name':True,'latitude':True, 
+        'longitude':True, 'stars':True, 'neighborhood':True, 'address':True, 'attributes.GoodForKids':True}).limit(num)
+
+    def find_credit_reservations(self, db, num):
+        return db[self.name].find({'attributes.BusinessAcceptsCreditCards':True, 'attributes.RestaurantsReservations':True}, {'_id':False,'name':True,'latitude':True, 
+        'longitude':True, 'stars':True, 'neighborhood':True, 'address':True, 'attributes.BusinessAcceptsCreditCards':True, 'attributes.RestaurantsReservations':True}).limit(num)

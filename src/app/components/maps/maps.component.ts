@@ -26,7 +26,6 @@ export class MapsComponent implements OnInit {
   getAllRestaurants(){
     this.http.get(environment.api+"/maps").subscribe(data=>{
       this.mapData=data;
-      console.log(data);
     })
   }
 
@@ -38,6 +37,18 @@ export class MapsComponent implements OnInit {
 
   getWifi(){
     this.http.get(environment.api+"/maps/wifi").subscribe(data=>{
+      this.mapData=data;
+    })
+  }
+
+  getGoodForKidsRestaurants(){
+    this.http.get(environment.api+"/maps/good_for_kids").subscribe(data=>{
+      this.mapData=data;
+    })
+  }
+
+  getCreditCardAndReservations(){
+    this.http.get(environment.api+"/maps/credit_and_reservations").subscribe(data=>{
       this.mapData=data;
       console.log(data);
     })

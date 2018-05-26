@@ -159,3 +159,29 @@ def getWifiRestaurants():
         output.append(rest)
 
     return jsonify(output)
+
+@app.route("/maps/good_for_kids")
+def getGoodForKids():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Maps(
+        name=db_restaurants_table_name).find_good_for_kids(db,200)
+
+    output = []
+    for rest in restaurants:
+        output.append(rest)
+
+    return jsonify(output)
+
+@app.route("/maps/credit_and_reservations")
+def getCreditAndReservations():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Maps(
+        name=db_restaurants_table_name).find_credit_reservations(db,200)
+
+    output = []
+    for rest in restaurants:
+        output.append(rest)
+
+    return jsonify(output)
