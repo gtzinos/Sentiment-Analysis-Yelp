@@ -136,3 +136,38 @@ class Restaurants2(DatabaseTable):
                     )
 
         return output
+
+    def get_best_restaurants_by_neighborhood(self, db):
+        output = []
+        neighborhoods=['','The Lakes','Summerlin','South Summerlin','Sunrise','University','Westside', 'Anthem','Downtown','Southwest','Spring Valley',
+        'Southeast','Centennial','Chinatown','Northwest','Eastside','The Strip']
+
+        for n in neighborhoods:
+            restaurants = db[self.name].aggregate([
+                {
+                    "$project": { "_id":0, "city":0, "business_id":0, "longitude":0, "hours":0, "state":0, "postal_code":0, "attributes":0, "address":0, "latitude":0, "is_open":0, "categories":0 }
+                },
+                {
+                    "$match": {"neighborhood": n}
+                },
+                {
+                    "$sort": {"review_count": -1, "stars": -1}
+                },
+                {
+                    "$limit": 1
+                }
+            ])
+
+            restaurants = list(restaurants)
+            
+            for restaurant in restaurants:
+                output.append(
+                    {
+                        "neighborhood": str(restaurant['neighborhood']),
+                        "name": str(restaurant['name']),
+                        "review_count": str(restaurant['review_count']),
+                        "stars": str(restaurant['stars'])
+                    }
+                )
+
+        return output

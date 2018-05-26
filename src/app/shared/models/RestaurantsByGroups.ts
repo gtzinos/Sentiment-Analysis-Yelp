@@ -6,4 +6,7 @@ export class RestaurantByGroups {
     ambience:string;
     music:string;
     day:string;
+    name: string;
+    review_count: number;
+    stars: number;
   }

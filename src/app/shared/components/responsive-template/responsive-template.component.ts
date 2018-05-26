@@ -38,7 +38,7 @@ export class ResponsiveTemplateComponent implements OnDestroy {
       ]
     },
     {
-      title: "Top 10",
+      title: "Tables",
       url: "/restaurants",
       children: [
         {
@@ -52,6 +52,10 @@ export class ResponsiveTemplateComponent implements OnDestroy {
         {
           title: "Users",
           url: "/users"
+        },
+        {
+          title: 'Neighborhood',
+          url: '/neighborhood'
         }
       ]
     },

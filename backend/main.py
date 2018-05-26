@@ -243,3 +243,11 @@ def getRestaurantsByDay():
     restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_day(db)
 
     return jsonify(restaurants)
+
+@app.route("/best-restaurant-by-neighborhood")
+def getBestRestaurant():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_best_restaurants_by_neighborhood(db)
+
+    return jsonify(restaurants)

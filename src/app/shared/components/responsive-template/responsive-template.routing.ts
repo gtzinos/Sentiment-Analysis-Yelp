@@ -43,6 +43,9 @@ export const routes: Routes = [
       },
       {
         path: 'restaurants-by-groups', loadChildren: '../../../components/plots/restaurants-by-groups/restaurants-by-groups.module#RestaurantsByGroupsModule'
+      },
+      {
+        path: 'neighborhood', loadChildren: '../../../components/tables/neighborhood/neighborhood.module#NeighborhoodModule'
       }
     ]
   }
