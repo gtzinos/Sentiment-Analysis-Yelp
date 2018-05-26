@@ -1,0 +1,12 @@
+<mat-form-field>
+  <mat-select placeholder="Group by field" [(ngModel)]="selectedGroup" (selectionChange)="updatePlots()">
+    <mat-option *ngFor="let group of groups" [value]="group.id">
+      {{ group.text }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<div>
+  <chart-element *ngIf="users && users.length > 0" [graphConfiguration]="graphConfigurations" [data]="users"></chart-element>
+</div>
+

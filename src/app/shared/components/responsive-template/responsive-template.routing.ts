@@ -43,6 +43,9 @@ export const routes: Routes = [
       },
       {
         path: 'maps', loadChildren: '../../../components/maps/maps.module#MapsModule'
+      },
+      {
+        path: 'group-users-by', loadChildren: '../../../components/plots/group-users-by/group-users-by.module#GroupUsersByModule'
       }
     ]
   }

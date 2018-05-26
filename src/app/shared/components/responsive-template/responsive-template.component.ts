@@ -34,6 +34,10 @@ export class ResponsiveTemplateComponent implements OnDestroy {
         {
           title: "Top Word Count",
           url: "/top-words"
+        },
+        {
+          title: "Group Users",
+          url: '/group-users-by'
         }
       ]
     },
