@@ -18,3 +18,7 @@ class Maps(DatabaseTable):
     def find_5star_restaurants(self,db, num):
         return db[self.name].find({'stars':5}, {'_id':False,'name':True,'latitude':True, 
         'longitude':True, 'stars':True, 'neighborhood':True, 'address':True}).limit(num)
+
+    def find_wifi_restaurants(self, db, num):
+        return db[self.name].find({'attributes.WiFi': 'free'}, {'_id':False,'name':True,'latitude':True, 
+        'longitude':True, 'stars':True, 'neighborhood':True, 'address':True, 'attributes':True}).limit(num)

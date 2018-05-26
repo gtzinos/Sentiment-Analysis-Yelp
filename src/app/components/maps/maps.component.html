@@ -1,19 +1,20 @@
 <h1 class="header">{{ title }}</h1>
 
 <button mat-button (click)="getFiveStarsRestaurants()">Top 200 5 Stars Restaurants </button>
-<button mat-button (click)="getFiveStarsRestaurants()">Free WiFi</button>
+<button mat-button (click)="getWifi()">Free WiFi</button>
 <button mat-button (click)="getFiveStarsRestaurants()">Good for kids</button>
 <button mat-button (click)="getFiveStarsRestaurants()">Accept credit card</button>
 <button mat-button (click)="getFiveStarsRestaurants()">Has delivery</button>
 <button mat-button (click)="getFiveStarsRestaurants()">Outdoor Seating</button>
 
-<agm-map [latitude]="lat" [longitude]="lng">
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
   <agm-marker *ngFor="let cord of mapData" [latitude]="cord.latitude" [longitude]="cord.longitude" [openInfoWindow]="true" [markerClickable]="true">
     <agm-info-window>
       <div class="title">{{cord.name}}</div>
       <div>Neighborhood: {{cord.neighborhood}}</div>
       <div>Address: {{cord.address}}</div>
       <div>Stars: {{cord.stars}}</div>
+      <div *ngIf="cord.attributes">WiFi: {{cord.attributes.WiFi}}</div>
     </agm-info-window>
   </agm-marker>
 </agm-map>

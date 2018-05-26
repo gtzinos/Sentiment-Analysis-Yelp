@@ -147,3 +147,15 @@ def getFiveStarRestaurans():
 
     return jsonify(output)
 
+@app.route("/maps/wifi")
+def getWifiRestaurants():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Maps(
+        name=db_restaurants_table_name).find_wifi_restaurants(db,200)
+
+    output = []
+    for rest in restaurants:
+        output.append(rest)
+
+    return jsonify(output)

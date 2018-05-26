@@ -14,6 +14,7 @@ export class MapsComponent implements OnInit {
   public mapData:any;
   lat: number = 36.175585;
   lng: number = -115.199071;
+  zoom:number = 11;
 
   constructor(public http: HttpClient) { }
 
@@ -31,6 +32,12 @@ export class MapsComponent implements OnInit {
 
   getFiveStarsRestaurants(){
     this.http.get(environment.api+"/maps/5stars").subscribe(data=>{
+      this.mapData=data;
+    })
+  }
+
+  getWifi(){
+    this.http.get(environment.api+"/maps/wifi").subscribe(data=>{
       this.mapData=data;
       console.log(data);
     })
