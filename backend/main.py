@@ -125,7 +125,7 @@ def getUsersPerYear():
 
     return jsonify(users)
 
-@app.route("/grouped-users-by", methods=['POST'])
+@app.route("/group-users-by", methods=['POST'])
 def getGroupedUsersBy():
     fieldName = request.get_json().get('fieldName')
 
