@@ -157,11 +157,7 @@ class Users(DatabaseTable):
             "avg_compliment_cool": {"$avg": "$compliment_cool"}
         }
 
-
-        print(groupRules)
-
         users = db[self.name].aggregate([
-
             {"$project": {
                 "range": {
                     "$concat": [
@@ -192,7 +188,6 @@ class Users(DatabaseTable):
                 }
             }},
             {"$group": groupRules}
-
         ])
 
         users = list(users)
