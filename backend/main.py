@@ -2,6 +2,7 @@ from flask import Flask, jsonify, request
 from config.database import *
 from dbQueries.connect import *
 from dbQueries.restaurants import *
+from dbQueries.restaurants2 import *
 from dbQueries.reviews import *
 from dbQueries.users import *
 from dataAnalysis.filterData import *
@@ -202,3 +203,11 @@ def get_gfk_hh_os_rest():
         output.append(rest)
 
     return jsonify(output)
+
+@app.route("/restaurants-by-groups")
+def getRestaurantsByGroup():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_neighborhood(db)
+
+    return jsonify(restaurants)

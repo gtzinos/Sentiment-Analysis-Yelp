@@ -30,6 +30,10 @@ export class ResponsiveTemplateComponent implements OnDestroy {
         {
           title: "Users Per Year",
           url: "/users-per-year"
+        },
+        {
+          title: "Restaurants by Groups",
+          url: "/restaurants-by-groups"
         }
       ]
     },

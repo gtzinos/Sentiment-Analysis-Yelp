@@ -40,6 +40,9 @@ export const routes: Routes = [
       },
       {
         path: 'maps', loadChildren: '../../../components/maps/maps.module#MapsModule'
+      },
+      {
+        path: 'restaurants-by-groups', loadChildren: '../../../components/plots/restaurants-by-groups/restaurants-by-groups.module#RestaurantsByGroupsModule'
       }
     ]
   }
