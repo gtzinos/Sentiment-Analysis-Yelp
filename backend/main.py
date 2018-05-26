@@ -21,6 +21,7 @@ app.Debug = True
 
 CORS(app)
 
+
 def preprocessing(dataList, fieldNames):
     for fieldName in fieldNames:
         print(fieldName)
@@ -30,7 +31,7 @@ def preprocessing(dataList, fieldNames):
             row[fieldName] = tokenization(row[fieldName])
             row[fieldName] = remove_non_ascii(row[fieldName])
             row[fieldName] = to_lowercase(row[fieldName])
-            #row[fieldName] = remove_punctuation(row[fieldName])
+            # row[fieldName] = remove_punctuation(row[fieldName])
             row[fieldName] = replace_numbers(row[fieldName])
             row[fieldName] = remove_stopwords(row[fieldName])
             row[fieldName] = stem_en_words(row[fieldName])
@@ -103,21 +104,51 @@ def getReviewsNumberByYear():
 
     return jsonify(reviews)
 
+
 @app.route("/restaurants-by-wifi")
 def getRestaurantsByWifi():
     db = openConnection(db_hostname, db_name, db_port)
 
-    reviews = Restaurants(name=db_restaurants_table_name).get_restaurants_by_wifi(db)
+    reviews = Restaurants(
+        name=db_restaurants_table_name).get_restaurants_by_wifi(db)
 
     return jsonify(reviews)
+
 
 @app.route("/users-per-year")
 def getUsersPerYear():
     db = openConnection(db_hostname, db_name, db_port)
 
-    users = Users(name=db_users_table_name).get_users_per_year(db,15)
+    users = Users(name=db_users_table_name).get_users_per_year(db, 15)
 
     return jsonify(users)
+
+@app.route("/top-words")
+def getTopWords():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    reviews = Reviews(name=db_reviews_table_name).get_top_words(db, 10)
+
+    allReviewsTexts = ""
+
+    for review in reviews:
+        review['text'] = remove_non_words(review['text'])
+        review['text'] = tokenization(review['text'])
+        review['text'] = remove_non_ascii(review['text'])
+        review['text'] = replace_numbers(review['text'])
+        review['text'] = remove_stopwords(review['text'])
+
+        review['text'] = ' '.join([" " + str(text) for text in review['text']])
+
+    return jsonify(reviews)
+
+@app.route("/cnn", methods=['POST'])
+def getCNNPrediction():
+    termToClassify = request.get_json().get('term')
+
+    prediction = 1 #TODO ADD CNN Function
+
+    return jsonify({"algorithm": "cnn", "prediction": prediction})
 # print(top)
 # if __name__ == "__main__":
     # main()
