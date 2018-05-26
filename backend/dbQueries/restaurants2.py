@@ -55,3 +55,31 @@ class Restaurants2(DatabaseTable):
                     )
 
         return output
+
+
+    def get_restaurants_by_ambience(self, db):
+            output = []
+            ambiences=['romantic','intimate','classy','hipster','divey','touristy','trendy','upscale','casual']
+
+            for am in ambiences:
+                restaurants = db[self.name].aggregate([
+                    {
+                        "$match": {"attributes.Ambience."+am: True}
+                    },
+                    {
+                        "$group": {"_id": am, "count": {"$sum":1}}
+                    }
+                ])
+
+                restaurants = list(restaurants)
+                
+                for restaurant in restaurants:
+                    if '_id' in restaurant:
+                        output.append(
+                            {
+                                "ambience": str(restaurant['_id']),
+                                "count": restaurant['count']
+                            }
+                        )
+
+            return output

@@ -13,12 +13,14 @@ export class RestaurantsByGroupsComponent implements OnInit {
 
   @ViewChild("restaurantsByArea") restaurantsByArea: ElementRef<any>;
   @ViewChild("restaurantsByMeals") restaurantsByMeals: ElementRef<any>;
+  @ViewChild("restaurantsByAmbience") restaurantsByAmbience: ElementRef<any>;
 
   constructor(public http: HttpClient) { }
 
   ngOnInit() {
     let restaurantsByAreaCanvas = this.restaurantsByArea.nativeElement.getContext('2d');
     let restaurantsByMealsCanvas = this.restaurantsByMeals.nativeElement.getContext('2d');
+    let restaurantsByAmbienceCanvas = this.restaurantsByAmbience.nativeElement.getContext('2d');
 
     this.http.get(environment.api + "/restaurants-by-groups").subscribe((restaurants: [RestaurantByGroups]) => {
       let labels = [];
@@ -30,53 +32,65 @@ export class RestaurantsByGroupsComponent implements OnInit {
       });
 
       this.createChart(labels, restaurantsCount, "Number of Restaurants By Neighborhood", restaurantsByAreaCanvas, "bar");
+    });
+
+    this.http.get(environment.api + "/restaurants-by-meals").subscribe((restaurants: [RestaurantByGroups]) => {
+      let labels = [];
+      let restaurantsCount = [];
+
+      restaurants.forEach(restaurant => {
+        restaurantsCount.push(restaurant.count);
+        labels.push(restaurant.meal);
       });
 
-      this.http.get(environment.api + "/restaurants-by-meals").subscribe((restaurants: [RestaurantByGroups]) => {
-        let labels = [];
-        let restaurantsCount = [];
-  
-        restaurants.forEach(restaurant => {
-          restaurantsCount.push(restaurant.count);
-          labels.push(restaurant.meal);
-        });
-  
-        this.createChart(labels, restaurantsCount, "Number of Restaurants By Meal Type", restaurantsByMealsCanvas, "bar");
-        });
-    }
+      this.createChart(labels, restaurantsCount, "Number of Restaurants By Meal Type", restaurantsByMealsCanvas, "bar");
+    });
+
+    this.http.get(environment.api + "/restaurants-by-ambience").subscribe((restaurants: [RestaurantByGroups]) => {
+      let labels = [];
+      let restaurantsCount = [];
+
+      restaurants.forEach(restaurant => {
+        restaurantsCount.push(restaurant.count);
+        labels.push(restaurant.ambience);
+      });
+
+      this.createChart(labels, restaurantsCount, "Number of Restaurants By Ambience Type", restaurantsByAmbienceCanvas, "bar");
+    });
+  }
 
 
 
   createChart(labels, data, chartLabel, chartElement, type = "line") {
-        var chartData = {
-          labels: labels,
-          datasets: [
-            {
-              "label": chartLabel,
-              "data": data,
-              "backgroundColor": [
-                "#F08080",
-                "#696969",
-                "#1fc8f8",
-                "#76a346"
-              ]
-            }]
-        };
+    var chartData = {
+      labels: labels,
+      datasets: [
+        {
+          "label": chartLabel,
+          "data": data,
+          "backgroundColor": [
+            "#F08080",
+            "#696969",
+            "#1fc8f8",
+            "#76a346"
+          ]
+        }]
+    };
 
-        var chart = new Chart(
-          chartElement,
-          {
-            "type": type,
-            "data": chartData,
-            "options": {
-              scales: {
-                yAxes: [{
-                  stacked: true
-                }]
-              }
-            }
+    var chart = new Chart(
+      chartElement,
+      {
+        "type": type,
+        "data": chartData,
+        "options": {
+          scales: {
+            yAxes: [{
+              stacked: true
+            }]
           }
-        );
+        }
       }
+    );
+  }
 
 }

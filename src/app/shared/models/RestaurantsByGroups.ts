@@ -3,4 +3,5 @@ export class RestaurantByGroups {
     count: number;
     neighborhood: string;
     meal:string;
+    ambience:string;
   }
