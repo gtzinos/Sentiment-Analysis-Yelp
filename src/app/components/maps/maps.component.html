@@ -1,17 +1,27 @@
 <h1 class="header">{{ title }}</h1>
 
-<h2>{{ title1 }}</h2>
+
+<button mat-button (click)="getFiveStarsRestaurants()">Top 200 5 Stars Restaurants </button>
+<button mat-button (click)="getFiveStarsRestaurants()">Free WiFi</button>
+<button mat-button (click)="getFiveStarsRestaurants()">Good for kids</button>
+<button mat-button (click)="getFiveStarsRestaurants()">Accept credit card</button>
+<button mat-button (click)="getFiveStarsRestaurants()">Has delivery</button>
+<button mat-button (click)="getFiveStarsRestaurants()">Outdoor Seating</button>
 
 <agm-map [latitude]="lat" [longitude]="lng">
-  <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true" [markerClickable]="true">
+  <agm-marker *ngFor="let cord of mapData" [latitude]="cord.latitude" [longitude]="cord.longitude" [openInfoWindow]="true" [markerClickable]="true">
     <agm-info-window>
-      <div class="title">{{cord.label}}</div>
-      <div>{{cord.stars}}</div>
+      <div class="title">{{cord.name}}</div>
+      <div>Neighborhood: {{cord.neighborhood}}</div>
+      <div>Address: {{cord.address}}</div>
+      <div>Stars: {{cord.stars}}</div>
     </agm-info-window>
   </agm-marker>
 </agm-map>
 
-<h2>{{ title2 }}</h2>
+<h4>{{subtitle}}</h4>
+
+<!-- <h2>{{ title2 }}</h2>
 
 <agm-map [latitude]="lat" [longitude]="lng">
   <agm-marker *ngFor="let cord of coordinates" [latitude]="cord.lat" [longitude]="cord.lng" [openInfoWindow]="true" [markerClickable]="true">
@@ -108,4 +118,4 @@
       <div>{{cord.stars}}</div>
     </agm-info-window>
   </agm-marker>
-</agm-map>
+</agm-map> -->

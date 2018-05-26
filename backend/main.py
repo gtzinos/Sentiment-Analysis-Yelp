@@ -9,6 +9,7 @@ from dataAnalysis.plots import *
 from dataAnalysis.training import *
 from bson.json_util import dumps
 from flask_cors import CORS
+from dbQueries.maps import *
 
 db = openConnection(db_hostname, db_name, db_port)
 
@@ -117,3 +118,32 @@ def getUsersPerYear():
 # print(top)
 # if __name__ == "__main__":
     # main()
+
+
+@app.route("/maps")
+def getAllRestaurans():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Maps(
+        name=db_restaurants_table_name).find_restaurants(db, 200)
+
+    output = []
+    for rest in restaurants:
+        output.append(rest)
+
+    return jsonify(output)
+
+
+@app.route("/maps/5stars")
+def getFiveStarRestaurans():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Maps(
+        name=db_restaurants_table_name).find_5star_restaurants(db,200)
+
+    output = []
+    for rest in restaurants:
+        output.append(rest)
+
+    return jsonify(output)
+
