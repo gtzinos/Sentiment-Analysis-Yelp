@@ -56,7 +56,6 @@ class Restaurants2(DatabaseTable):
 
         return output
 
-
     def get_restaurants_by_ambience(self, db):
             output = []
             ambiences=['romantic','intimate','classy','hipster','divey','touristy','trendy','upscale','casual']
@@ -83,3 +82,57 @@ class Restaurants2(DatabaseTable):
                         )
 
             return output
+
+    def get_restaurants_by_music(self, db):
+            output = []
+            music=['dj','background_music','no_music','jukebox','live','video','karaoke']
+
+            for m in music:
+                restaurants = db[self.name].aggregate([
+                    {
+                        "$match": {"attributes.Music."+m: True}
+                    },
+                    {
+                        "$group": {"_id": m, "count": {"$sum":1}}
+                    }
+                ])
+
+                restaurants = list(restaurants)
+                
+                for restaurant in restaurants:
+                    if '_id' in restaurant:
+                        output.append(
+                            {
+                                "music": str(restaurant['_id']),
+                                "count": restaurant['count']
+                            }
+                        )
+
+            return output
+        
+    def get_restaurants_by_day(self, db):
+        output = []
+        dates=['monday','tuesday','wednesday','thursday','friday','saturday','sunday']
+
+        for d in dates:
+            restaurants = db[self.name].aggregate([
+                {
+                    "$match": {"attributes.BestNights."+d: True}
+                },
+                {
+                    "$group": {"_id": d, "count": {"$sum":1}}
+                }
+            ])
+
+            restaurants = list(restaurants)
+            
+            for restaurant in restaurants:
+                if '_id' in restaurant:
+                    output.append(
+                        {
+                            "day": str(restaurant['_id']),
+                            "count": restaurant['count']
+                        }
+                    )
+
+        return output

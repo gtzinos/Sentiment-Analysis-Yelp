@@ -4,4 +4,6 @@ export class RestaurantByGroups {
     neighborhood: string;
     meal:string;
     ambience:string;
+    music:string;
+    day:string;
   }

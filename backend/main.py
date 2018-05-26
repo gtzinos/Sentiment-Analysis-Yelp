@@ -227,3 +227,19 @@ def getRestaurantsByAbmience():
     restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_ambience(db)
 
     return jsonify(restaurants)
+
+@app.route("/restaurants-by-music")
+def getRestaurantsByMusic():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_music(db)
+
+    return jsonify(restaurants)
+
+@app.route("/restaurants-by-day")
+def getRestaurantsByDay():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_day(db)
+
+    return jsonify(restaurants)
