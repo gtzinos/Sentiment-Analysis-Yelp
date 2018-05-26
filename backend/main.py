@@ -10,6 +10,7 @@ from dataAnalysis.training import *
 from bson.json_util import dumps
 from flask_cors import CORS
 from dbQueries.maps import *
+from flask import request
 
 db = openConnection(db_hostname, db_name, db_port)
 
@@ -120,12 +121,16 @@ def getUsersPerYear():
     # main()
 
 
+
+
+
 @app.route("/maps")
 def getAllRestaurans():
+    limit = int(request.args.get('limit'))
+
     db = openConnection(db_hostname, db_name, db_port)
 
-    restaurants = Maps(
-        name=db_restaurants_table_name).find_restaurants(db, 200)
+    restaurants = Maps(name=db_restaurants_table_name).find_restaurants(db, limit)
 
     output = []
     for rest in restaurants:
@@ -149,10 +154,13 @@ def getFiveStarRestaurans():
 
 @app.route("/maps/wifi")
 def getWifiRestaurants():
+    stars = int(request.args.get('stars'))
+    limit = int(request.args.get('limit'))
+
     db = openConnection(db_hostname, db_name, db_port)
 
     restaurants = Maps(
-        name=db_restaurants_table_name).find_wifi_restaurants(db,200)
+        name=db_restaurants_table_name).find_wifi_restaurants(db, stars, limit)
 
     output = []
     for rest in restaurants:
@@ -160,12 +168,15 @@ def getWifiRestaurants():
 
     return jsonify(output)
 
-@app.route("/maps/good_for_kids")
-def getGoodForKids():
+@app.route("/maps/wifi_tv")
+def getWifiTvRestaurants():
+    stars = int(request.args.get('stars'))
+    limit = int(request.args.get('limit'))
+
     db = openConnection(db_hostname, db_name, db_port)
 
     restaurants = Maps(
-        name=db_restaurants_table_name).find_good_for_kids(db,200)
+        name=db_restaurants_table_name).find_wifi_tv_restaurants(db, stars, limit)
 
     output = []
     for rest in restaurants:
@@ -173,12 +184,18 @@ def getGoodForKids():
 
     return jsonify(output)
 
-@app.route("/maps/credit_and_reservations")
-def getCreditAndReservations():
+
+@app.route("/maps/gfk_hh_os")
+def get_gfk_hh_os_rest():
+    stars = int(request.args.get('stars'))
+    limit = int(request.args.get('limit'))
+
     db = openConnection(db_hostname, db_name, db_port)
 
-    restaurants = Maps(
-        name=db_restaurants_table_name).find_credit_reservations(db,200)
+    if(limit == 0):
+        restaurants = Maps(name=db_restaurants_table_name).find_gfk_hh_os_rest_no_limit(db,stars)
+    else:
+        restaurants = Maps(name=db_restaurants_table_name).find_gfk_hh_os_rest(db,stars, limit)
 
     output = []
     for rest in restaurants:

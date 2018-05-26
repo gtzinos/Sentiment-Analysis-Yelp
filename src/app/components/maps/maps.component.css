@@ -10,3 +10,7 @@ agm-map {
   .header{
     text-align: center;
   }
+
+mat-form-field, button[mat-button] {
+  margin: 5px;
+}

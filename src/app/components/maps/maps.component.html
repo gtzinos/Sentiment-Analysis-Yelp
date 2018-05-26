@@ -1,10 +1,27 @@
 <h1 class="header">{{ title }}</h1>
 
-<button mat-button (click)="getFiveStarsRestaurants()">Top 200 5 Stars Restaurants </button>
-<button mat-button (click)="getWifi()">Free WiFi</button>
-<button mat-button (click)="getGoodForKidsRestaurants()">Good for kids</button>
-<button mat-button (click)="getCreditCardAndReservations()">Accept credit card &amp; Has Reservations</button>
-<button mat-button (click)="getFiveStarsRestaurants()">Outdoor Seating</button>
+<mat-form-field>
+  <mat-select placeholder="Number of restaurants" [(value)]="selectedPins" >
+    <mat-option *ngFor="let num of numOfPins" [value]="num.value">
+      {{ num.viewValue }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-select placeholder="Number of stars" [(value)]="selectedStars" >
+    <mat-option *ngFor="let num of numOfStars" [value]="num.value">
+      {{ num.viewValue }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+
+<br>
+
+<button mat-button (click)="getAllRestaurants()">Unfiltered Restaurants</button>
+<button mat-button (click)="getWifi()">Has WiFi</button>
+<button mat-button (click)="getWifiAndTv()">Has WiFi and TV</button>
+<button mat-button (click)="getGfkAndHhAndOs()">Good for kids with happy hours and Outdoor Seating</button>
 
 <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom">
   <agm-marker *ngFor="let cord of mapData" [latitude]="cord.latitude" [longitude]="cord.longitude" [openInfoWindow]="true" [markerClickable]="true">
@@ -14,10 +31,8 @@
       <div>Address: {{cord.address}}</div>
       <div>Stars: {{cord.stars}}</div>
       <div *ngIf="cord.attributes">WiFi: {{cord.attributes.WiFi}}</div>
-      <div *ngIf="cord.attributes">Good for kids: Yes</div>
-      <div *ngIf="cord.attributes">Accepts Credit Card: Yes <br> Reservations: Yes</div>
+      <div *ngIf="cord.attributes">TV: Yes</div>
+
     </agm-info-window>
   </agm-marker>
 </agm-map>
-
-<h4>{{subtitle}}</h4>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Attribute } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 
@@ -8,6 +8,23 @@ import { environment } from '../../../environments/environment';
   styleUrls: ['./maps.component.css']
 })
 export class MapsComponent implements OnInit {
+
+  numOfPins = [
+    {value: '100', viewValue: '100'},
+    {value: '200', viewValue: '200'},
+    {value: '0', viewValue: 'All'}
+  ];
+  selectedPins='100';
+
+  numOfStars=[
+    {value: '1', viewValue: 'Up to 1 Star'},
+    {value: '2', viewValue: 'Up to 2 Stars'},
+    {value: '3', viewValue: 'Up to 3 Stars'},
+    {value: '4', viewValue: 'Up to 4 Stars'},
+    {value: '5', viewValue: 'All'}
+  ];
+  
+  selectedStars='5';
 
   title: string = 'Some of Los Angeles Restaurants';
   subtitle:string="Results are limited to 200 restaurants"
@@ -24,7 +41,7 @@ export class MapsComponent implements OnInit {
 
 
   getAllRestaurants(){
-    this.http.get(environment.api+"/maps").subscribe(data=>{
+    this.http.get(environment.api+"/maps?limit="+this.selectedPins).subscribe(data=>{
       this.mapData=data;
     })
   }
@@ -36,13 +53,19 @@ export class MapsComponent implements OnInit {
   }
 
   getWifi(){
-    this.http.get(environment.api+"/maps/wifi").subscribe(data=>{
+    this.http.get(environment.api+"/maps/wifi?stars="+this.selectedStars+'&limit='+this.selectedPins).subscribe(data=>{
       this.mapData=data;
     })
   }
 
-  getGoodForKidsRestaurants(){
-    this.http.get(environment.api+"/maps/good_for_kids").subscribe(data=>{
+  getWifiAndTv(){
+    this.http.get(environment.api+"/maps/wifi_tv?stars="+this.selectedStars+'&limit='+this.selectedPins).subscribe(data=>{
+      this.mapData=data;
+    })
+  }
+
+  getGfkAndHhAndOs(){
+    this.http.get(environment.api+"/maps/gfk_hh_os?stars="+this.selectedStars+'&limit='+this.selectedPins).subscribe(data=>{
       this.mapData=data;
     })
   }
@@ -50,7 +73,7 @@ export class MapsComponent implements OnInit {
   getCreditCardAndReservations(){
     this.http.get(environment.api+"/maps/credit_and_reservations").subscribe(data=>{
       this.mapData=data;
-      console.log(data);
     })
   }
+
 }
