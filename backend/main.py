@@ -211,3 +211,11 @@ def getRestaurantsByGroup():
     restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_neighborhood(db)
 
     return jsonify(restaurants)
+
+@app.route("/restaurants-by-meals")
+def getRestaurantsByMeals():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_meals(db)
+
+    return jsonify(restaurants)
