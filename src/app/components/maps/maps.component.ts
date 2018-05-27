@@ -26,7 +26,7 @@ export class MapsComponent implements OnInit {
   
   selectedStars='5';
 
-  title: string = 'Some of Los Angeles Restaurants';
+  title: string = 'Some of Las Vegas Restaurants';
   subtitle:string="Results are limited to 200 restaurants"
   public mapData:any;
   lat: number = 36.175585;

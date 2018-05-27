@@ -9,4 +9,5 @@ export class RestaurantByGroups {
     name: string;
     review_count: number;
     stars: number;
+    type:string;
   }

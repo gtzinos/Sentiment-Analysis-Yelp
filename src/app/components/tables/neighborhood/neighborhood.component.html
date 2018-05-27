@@ -1,5 +1,4 @@
-
-<h3>Top Restaurant by Neighborhood </h3>
+<h3>Top Restaurant by Neighborhood</h3>
 <div class="example-container mat-elevation-z8">
 
   <table mat-table [dataSource]="dataSource" matSort>
@@ -33,3 +32,53 @@
     </tr>
   </table>
 </div>
+
+
+<h3>Top Quiet Restaurant by Neighborhood</h3>
+<div class="example-container mat-elevation-z8">
+
+  <table mat-table [dataSource]="dataSource2" matSort>
+
+    <!-- Neighborhood Column -->
+    <ng-container matColumnDef="neighborhood">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Neighborhood </th>
+      <td mat-cell *matCellDef="let row"> {{row.neighborhood}}</td>
+    </ng-container>
+
+    <!-- Restaurant Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Restaurant </th>
+      <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+    </ng-container>
+
+    <!-- Address Column -->
+    <ng-container matColumnDef="address">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+      <td mat-cell *matCellDef="let row"> {{row.address}} </td>
+    </ng-container>
+
+    <!-- Stars Column -->
+    <ng-container matColumnDef="stars">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Stars </th>
+      <td mat-cell *matCellDef="let row"> {{row.stars}} </td>
+    </ng-container>
+
+    <!-- Reviews Column -->
+    <ng-container matColumnDef="review_count">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Reviews </th>
+      <td mat-cell *matCellDef="let row"> {{row.review_count}} </td>
+    </ng-container>
+
+    <!-- Quite Level Column -->
+    <ng-container matColumnDef="noise_level">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Noise Level </th>
+      <td mat-cell *matCellDef="let row"> {{row.noise_level}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns2"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns2;">
+    </tr>
+  </table>
+</div>
+
+<br>

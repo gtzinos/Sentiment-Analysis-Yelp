@@ -251,3 +251,21 @@ def getBestRestaurant():
     restaurants = Restaurants2(name=db_restaurants_table_name).get_best_restaurants_by_neighborhood(db)
 
     return jsonify(restaurants)
+
+@app.route("/top10-quiet-restaurants")
+def getTop10Quiet():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_top10_quiet_restaurants_by_neighborhood(db)
+
+    return jsonify(restaurants)
+
+@app.route("/smoking-by-neighborhood")
+def getSmokingNeighborhood():
+    neighborhood = request.args.get('neighborhood')
+
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_smoking_neighborhood(db,neighborhood)
+
+    return jsonify(restaurants)
