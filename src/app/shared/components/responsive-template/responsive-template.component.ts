@@ -34,11 +34,15 @@ export class ResponsiveTemplateComponent implements OnDestroy {
         {
           title: "Top Word Count",
           url: "/top-words"
+        },
+        {
+          title: "Restaurants by Groups",
+          url: "/restaurants-by-groups"
         }
       ]
     },
     {
-      title: "Top 10",
+      title: "Tables",
       url: "/restaurants",
       children: [
         {
@@ -52,6 +56,10 @@ export class ResponsiveTemplateComponent implements OnDestroy {
         {
           title: "Users",
           url: "/users"
+        },
+        {
+          title: 'Neighborhood',
+          url: '/neighborhood'
         }
       ]
     },
