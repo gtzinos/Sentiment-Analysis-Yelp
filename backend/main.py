@@ -3,6 +3,7 @@ from config.database import *
 from dbQueries.connect import *
 from dbQueries.restaurants import *
 from dbQueries.reviews import *
+from dbQueries.restaurants2 import *
 from dbQueries.users import *
 from dataAnalysis.filterData import *
 from dataAnalysis.plots import *
@@ -10,6 +11,8 @@ from dataAnalysis.training import *
 from bson.json_util import dumps
 from flask_cors import CORS
 from config.http_codes import HttpCodes
+from dbQueries.maps import *
+from flask import request
 
 import pip
 print(pip.__version__)
@@ -178,3 +181,134 @@ def getCNNPrediction():
 # print(top)
 # if __name__ == "__main__":
     # main()
+
+
+
+
+
+@app.route("/maps")
+def getAllRestaurans():
+    limit = int(request.args.get('limit'))
+
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Maps(name=db_restaurants_table_name).find_restaurants(db, limit)
+
+    output = []
+    for rest in restaurants:
+        output.append(rest)
+
+    return jsonify(output)
+
+
+@app.route("/maps/5stars")
+def getFiveStarRestaurans():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Maps(
+        name=db_restaurants_table_name).find_5star_restaurants(db,200)
+
+    output = []
+    for rest in restaurants:
+        output.append(rest)
+
+    return jsonify(output)
+
+@app.route("/maps/wifi")
+def getWifiRestaurants():
+    stars = int(request.args.get('stars'))
+    limit = int(request.args.get('limit'))
+
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Maps(
+        name=db_restaurants_table_name).find_wifi_restaurants(db, stars, limit)
+
+    output = []
+    for rest in restaurants:
+        output.append(rest)
+
+    return jsonify(output)
+
+@app.route("/maps/wifi_tv")
+def getWifiTvRestaurants():
+    stars = int(request.args.get('stars'))
+    limit = int(request.args.get('limit'))
+
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Maps(
+        name=db_restaurants_table_name).find_wifi_tv_restaurants(db, stars, limit)
+
+    output = []
+    for rest in restaurants:
+        output.append(rest)
+
+    return jsonify(output)
+
+
+@app.route("/maps/gfk_hh_os")
+def get_gfk_hh_os_rest():
+    stars = int(request.args.get('stars'))
+    limit = int(request.args.get('limit'))
+
+    db = openConnection(db_hostname, db_name, db_port)
+
+    if(limit == 0):
+        restaurants = Maps(name=db_restaurants_table_name).find_gfk_hh_os_rest_no_limit(db,stars)
+    else:
+        restaurants = Maps(name=db_restaurants_table_name).find_gfk_hh_os_rest(db,stars, limit)
+
+    output = []
+    for rest in restaurants:
+        output.append(rest)
+
+    return jsonify(output)
+
+@app.route("/restaurants-by-groups")
+def getRestaurantsByGroup():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_neighborhood(db)
+
+    return jsonify(restaurants)
+
+@app.route("/restaurants-by-meals")
+def getRestaurantsByMeals():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_meals(db)
+
+    return jsonify(restaurants)
+
+@app.route("/restaurants-by-ambience")
+def getRestaurantsByAbmience():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_ambience(db)
+
+    return jsonify(restaurants)
+
+@app.route("/restaurants-by-music")
+def getRestaurantsByMusic():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_music(db)
+
+    return jsonify(restaurants)
+
+@app.route("/restaurants-by-day")
+def getRestaurantsByDay():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_day(db)
+
+    return jsonify(restaurants)
+
+@app.route("/best-restaurant-by-neighborhood")
+def getBestRestaurant():
+    db = openConnection(db_hostname, db_name, db_port)
+
+    restaurants = Restaurants2(name=db_restaurants_table_name).get_best_restaurants_by_neighborhood(db)
+
+    return jsonify(restaurants)

@@ -37,12 +37,16 @@ export class ResponsiveTemplateComponent implements OnDestroy {
         },
         {
           title: "Group Users",
-          url: '/group-users-by'
+          url: '/group-users-by',
+        },
+        {
+          title: "Restaurants by Groups",
+          url: "/restaurants-by-groups"
         }
       ]
     },
     {
-      title: "Top 10",
+      title: "Tables",
       url: "/restaurants",
       children: [
         {
@@ -56,6 +60,10 @@ export class ResponsiveTemplateComponent implements OnDestroy {
         {
           title: "Users",
           url: "/users"
+        },
+        {
+          title: 'Neighborhood',
+          url: '/neighborhood'
         }
       ]
     },
