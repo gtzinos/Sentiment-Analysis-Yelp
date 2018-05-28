@@ -1,6 +1,6 @@
 import pymongo
 from .databaseTable import DatabaseTable
-
+from pprint import *
 
 class Restaurants2(DatabaseTable):
 
@@ -170,4 +170,64 @@ class Restaurants2(DatabaseTable):
                     }
                 )
 
+        return output
+
+    def get_top10_quiet_restaurants_by_neighborhood(self, db):
+        output = []
+        neighborhoods=['','The Lakes','Summerlin','South Summerlin','Sunrise','University','Westside', 'Anthem','Downtown','Southwest','Spring Valley',
+        'Southeast','Centennial','Chinatown','Northwest','Eastside','The Strip']
+
+        for n in neighborhoods:
+            restaurants = db[self.name].aggregate(
+                [
+                    {
+                        "$project": { "_id":0, "business_id":0, "longitude":0, "latitude":0, "hours":0, "state":0, "postal_code":0, "categories":0, "is_open":0 }
+                    },
+                    {
+                        "$match": {"attributes.NoiseLevel": "quiet", "neighborhood": n}
+                    },
+                    {
+                        "$sort": {"review_count": -1}
+                    },
+                    {
+                        "$limit": 1
+                    }
+                ]
+            )
+            restaurants = list(restaurants)
+            
+            for restaurant in restaurants:
+                output.append(
+                    {
+                        "neighborhood": str(restaurant['neighborhood']),
+                        "name": str(restaurant['name']),
+                        "address": str(restaurant['address']),
+                        "noise_level": str('Quiet'),
+                        "review_count": str(restaurant['review_count']),
+                        "stars": str(restaurant['stars'])
+                    }
+                )
+        return output
+
+    def get_smoking_neighborhood(self, db, which):
+        output = []
+        restaurants = db[self.name].aggregate(
+            [
+                {
+                    "$match": {"neighborhood": which}
+                },
+                {
+                    "$group": { "_id": "$attributes.Smoking", "count": {"$sum": 1} }
+                }
+            ]
+        )
+        restaurants = list(restaurants)
+        
+        for restaurant in restaurants:
+            output.append(
+                {
+                    "type": str(restaurant['_id']),
+                    "count": str(restaurant['count'])
+                }
+            )
         return output

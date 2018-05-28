@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environments/environment';
 import { RestaurantByGroups } from '../../../shared/models/RestaurantsByGroups';
 import { Chart } from 'chart.js'
+import { MatSelectChange } from '@angular/material';
+
 
 @Component({
   selector: 'app-restaurants-by-groups',
@@ -16,9 +18,29 @@ export class RestaurantsByGroupsComponent implements OnInit {
   @ViewChild("restaurantsByAmbience") restaurantsByAmbience: ElementRef<any>;
   @ViewChild("restaurantsByMusic") restaurantsByMusic: ElementRef<any>;
   @ViewChild("restaurantsByDay") restaurantsByDay: ElementRef<any>;
+  @ViewChild("restaurantsBySmoking") restaurantsBySmoking: ElementRef<any>;
 
-  
+
+  neighborhood =[
+    {value: 'Southeast', viewValue: 'Southeast'},
+    {value: 'Spring Valley', viewValue: 'Spring Valley'},
+    {value: 'Westside', viewValue: 'Westside'},
+    {value: 'Eastside', viewValue: 'Eastside'},
+    {value: 'Anthem', viewValue: 'Anthem'},
+    {value: 'Centennial', viewValue: 'Centennial'},
+    {value: 'Northwest', viewValue: 'Northwestcos'},
+    {value: 'The Strip', viewValue: 'The Strip'},
+    {value: 'Downtown', viewValue: 'Downtown'},
+    {value: 'University', viewValue: 'University'},
+    {value: 'South Summerlin', viewValue: 'South Summerlin'},
+    {value: 'Chinatown', viewValue: 'Chinatown'},
+    {value: 'Southwest', viewValue: 'Southwest'},
+    {value: 'Summerlin', viewValue: 'Summerlin'},
+    {value: 'The Lakes', viewValue: 'The Lakes'}
+  ];
+
   constructor(public http: HttpClient) { }
+  restaurantsBySmokingCanvas;
 
   ngOnInit() {
     let restaurantsByAreaCanvas = this.restaurantsByArea.nativeElement.getContext('2d');
@@ -26,6 +48,8 @@ export class RestaurantsByGroupsComponent implements OnInit {
     let restaurantsByAmbienceCanvas = this.restaurantsByAmbience.nativeElement.getContext('2d');
     let restaurantsByMusicCanvas = this.restaurantsByMusic.nativeElement.getContext('2d');
     let restaurantsByDayCanvas = this.restaurantsByDay.nativeElement.getContext('2d');
+
+    this.restaurantsBySmokingCanvas = this.restaurantsBySmoking.nativeElement.getContext('2d');
 
     this.http.get(environment.api + "/restaurants-by-groups").subscribe((restaurants: [RestaurantByGroups]) => {
       let labels = [];
@@ -87,6 +111,22 @@ export class RestaurantsByGroupsComponent implements OnInit {
       this.createChart(labels, restaurantsCount, "Number of Restaurants by Best Nights", restaurantsByDayCanvas, "bar");
     });
     
+    this.getSmokingStats(this.neighborhood[0].value);
+  }
+
+  
+  getSmokingStats(which){
+    this.http.get(environment.api + "/smoking-by-neighborhood?neighborhood="+which).subscribe((restaurants: [RestaurantByGroups]) => {
+      let labels = [];
+      let restaurantsCount = [];
+
+      restaurants.forEach(restaurant => {
+        restaurantsCount.push(restaurant.count);
+        labels.push(restaurant.type);
+      });
+
+      this.createChart(labels, restaurantsCount, "Smoking Stats by Neighborhood", this.restaurantsBySmokingCanvas, "doughnut");
+    });
   }
 
   createChart(labels, data, chartLabel, chartElement, type = "line") {
@@ -120,5 +160,4 @@ export class RestaurantsByGroupsComponent implements OnInit {
       }
     );
   }
-
 }

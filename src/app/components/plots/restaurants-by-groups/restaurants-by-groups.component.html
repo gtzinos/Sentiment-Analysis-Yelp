@@ -1,19 +1,29 @@
 <div class="chart-wrapper">
-  <canvas #restaurantsByArea width="400" height="400"></canvas>
+  <select (change)="getSmokingStats($event.target.value)">
+    <option *ngFor="let n of neighborhood" [value]="n.value">
+        {{ n.viewValue }}
+    </option>
+  </select>
+
+  <canvas #restaurantsBySmoking width="200" height="200"></canvas>
 </div>
 
 <div class="chart-wrapper">
-  <canvas #restaurantsByMeals width="400" height="400"></canvas>
+  <canvas #restaurantsByArea width="200" height="200"></canvas>
 </div>
 
 <div class="chart-wrapper">
-  <canvas #restaurantsByAmbience width="400" height="400"></canvas>
+  <canvas #restaurantsByMeals width="200" height="200"></canvas>
 </div>
 
 <div class="chart-wrapper">
-  <canvas #restaurantsByMusic width="400" height="400"></canvas>
+  <canvas #restaurantsByAmbience width="200" height="200"></canvas>
 </div>
 
 <div class="chart-wrapper">
-  <canvas #restaurantsByDay width="400" height="400"></canvas>
+  <canvas #restaurantsByMusic width="200" height="200"></canvas>
+</div>
+
+<div class="chart-wrapper">
+  <canvas #restaurantsByDay width="200" height="200"></canvas>
 </div>

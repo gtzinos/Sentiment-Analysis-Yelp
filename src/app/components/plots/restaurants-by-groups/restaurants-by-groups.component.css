@@ -1,0 +1,16 @@
+.chart-wrapper{
+    width: 50%;
+    float: left !important;
+    margin: 20px auto;
+}
+
+select{
+    width: 100%;
+    background: transparent;
+    border: solid thin rgba(0, 0, 0, 0.15);
+}
+
+select:focus{
+    box-shadow: none;
+    border: solid thin rgba(0, 0, 0, 0.15);
+}
