@@ -43,3 +43,18 @@ class Restaurants(DatabaseTable):
 
         return output
 
+    @staticmethod
+    def get_restaurant_list(db, restaurant_type, restaurantTableName):
+
+      japaneseFilteredRestaurants = db[restaurantTableName].find({"categories": restaurant_type})
+      japaneseRestaurantsList = list(japaneseFilteredRestaurants)
+      outputList = []
+      for restaurant in japaneseRestaurantsList:
+        if '_id' in restaurant:
+          outputList.extend(
+            {
+              str(restaurant['business_id'])
+            }
+          )
+
+      return outputList
