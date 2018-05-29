@@ -286,7 +286,7 @@ def replace_slang_internet_words(words):
                         "gratz":"congratulations","gtfo":"get_the_fuck_out","gl":"good_luck",
                         "gj":"good_job","gg":"good_job","hf":"have_fun",
                         "idk":"i_dont_know","irl":"in_real_life","jk":"just_kidding",
-         gi               "l8":"late","lmao":"laugh","lmbao":"laugh","lol":"laugh",
+                        "l8":"late","lmao":"laugh","lmbao":"laugh","lol":"laugh",
                         "n1":"nice_one","nvm":"nevermind","omg":"oh_my_god","omfg":"oh_my_god",
                         "stfu":"shut_it","ty":"thanks","yolo":"you_only_live_once"}
     new_words = []
