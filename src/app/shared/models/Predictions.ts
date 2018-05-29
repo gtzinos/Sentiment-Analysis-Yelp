@@ -1,3 +1,5 @@
 export class Predictions {
-  public cnn: number;
+  public dnn: number;
+  public svm: number;
+  public nb : number;
 }

@@ -2,9 +2,9 @@ from sklearn import svm
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 
-import backend.dataAnalysis.filterData as preprocess
-from backend.mlClassifiers.dao.mlReadWriteCSV import checkFileExistance, loadDataframeFromMemory
-from backend.mlClassifiers.datasetController.mlDataframeCreator import createDataframeFromScrach, preprocessReview, \
+import dataAnalysis.filterData as preprocess
+from mlClassifiers.dao.mlReadWriteCSV import checkFileExistance, loadDataframeFromMemory
+from mlClassifiers.datasetController.mlDataframeCreator import createDataframeFromScrach, preprocessReview, \
   listOfStringToString
 
 

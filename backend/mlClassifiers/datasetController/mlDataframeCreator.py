@@ -1,11 +1,11 @@
 import pandas as pd
-import backend.dataAnalysis.filterData as preprocess
+import dataAnalysis.filterData as preprocess
 from tflearn.data_utils import pad_sequences
-from backend.config.database import db_hostname, db_name, db_port, db_reviews_table_name, db_users_table_name, \
+from config.database import db_hostname, db_name, db_port, db_reviews_table_name, db_users_table_name, \
   db_restaurants_table_name
-from backend.dbQueries.connect import openConnection
-from backend.mlClassifiers.dao.mlReadWriteCSV import *
-from backend.mlClassifiers.datasetController.mlDbQueriesController import ML_DatasetCreator
+from dbQueries.connect import openConnection
+from mlClassifiers.dao.mlReadWriteCSV import *
+from mlClassifiers.datasetController.mlDbQueriesController import ML_DatasetCreator
 
 
 class ML_DataframeCreator:
