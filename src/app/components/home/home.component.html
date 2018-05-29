@@ -10,13 +10,13 @@
 </mat-card>
 
 <mat-list>
-  <div *ngIf="predictions && predictions.cnn">
-      <mat-list-item>CNN: {{predictions.cnn}}</mat-list-item>
+  <div *ngIf="predictions && predictions.dnn">
+      <mat-list-item>DNN: {{predictions.dnn}}</mat-list-item>
       <mat-divider></mat-divider>
   </div>
-  <div *ngIf="predictions && predictions.cnn">
-      <mat-list-item>CNN: {{predictions.cnn}}</mat-list-item>
+  <div *ngIf="predictions && predictions.svm">
+      <mat-list-item>SVM: {{predictions.svm}}</mat-list-item>
       <mat-divider></mat-divider>
   </div>
-  <mat-list-item *ngIf="predictions && predictions.cnn">CNN: {{predictions.cnn}}</mat-list-item>
+  <mat-list-item *ngIf="predictions && predictions.nb">NB: {{predictions.nb}}</mat-list-item>
 </mat-list>
