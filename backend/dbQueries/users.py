@@ -115,3 +115,28 @@ class Users(DatabaseTable):
                      } )
 
         return output
+
+    @staticmethod
+    def get_goodUsers_list(db, userTableName):
+
+      filteredGoodUsers = db[userTableName].find(
+        {"useful": {"$gte": 50},
+         "compliment_profile": {"$gte": 1},
+         "funny": {"$gte": 20},
+         "cool": {"$gte": 10},
+         "fans": {"$gte": 0},
+         "average_stars": {"$gte": 1, "$lte": 4.5}
+         }
+      )
+
+      goodUsersList = list(filteredGoodUsers)
+      outputList = []
+      for user in goodUsersList:
+        if '_id' in user:
+          outputList.extend(
+            {
+              str(user['user_id'])
+            }
+          )
+
+      return outputList
