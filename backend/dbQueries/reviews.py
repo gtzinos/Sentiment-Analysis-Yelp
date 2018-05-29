@@ -85,3 +85,15 @@ class Reviews(DatabaseTable):
                 )
 
         return output
+
+    @staticmethod
+    def get_goodUser_reviews(db, reviewTableName, goodReviewersList, restaurantList):
+
+        filteredReviews = db[reviewTableName].find(
+          {
+            "user_id": {"$in": goodReviewersList},
+            "business_id": {"$in": restaurantList},
+            "useful": {"$gte": 1}
+          })
+
+        return filteredReviews
