@@ -39,7 +39,19 @@ export const routes: Routes = [
         path: 'users-per-year', loadChildren: '../../../components/plots/users-per-year/users-per-year.module#UsersPerYearModule'
       },
       {
+        path: 'top-words', loadChildren: '../../../components/plots/word-count/word-count.module#WordCountModule'
+      },
+      {
         path: 'maps', loadChildren: '../../../components/maps/maps.module#MapsModule'
+      },
+      {
+        path: 'group-users-by', loadChildren: '../../../components/plots/group-users-by/group-users-by.module#GroupUsersByModule'
+      },
+      {
+        path: 'restaurants-by-groups', loadChildren: '../../../components/plots/restaurants-by-groups/restaurants-by-groups.module#RestaurantsByGroupsModule'
+      },
+      {
+        path: 'neighborhood', loadChildren: '../../../components/tables/neighborhood/neighborhood.module#NeighborhoodModule'
       }
     ]
   }

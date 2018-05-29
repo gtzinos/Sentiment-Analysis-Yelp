@@ -97,3 +97,18 @@ class Reviews(DatabaseTable):
           })
 
         return filteredReviews
+
+    def get_top_words(self, db, num):
+        reviews = db[self.name].find({"useful": {"$gt": 100}})
+
+        reviews = list(reviews)
+        output = []
+        for review in reviews:
+            if '_id' in review:
+                output.append(
+                    {
+                        "text": str(review['text'])
+                    }
+                )
+
+        return output

@@ -48,9 +48,22 @@ def normalize_array(array, indexes):
 
     return array
 
+def remove_non_words(words):
+    new_words = []
+    for word in words:
+        word = word.lower()
+        filtered = re.sub(r'(?:https?|ftp|http):\/\/[\n\S]+', '', word)
+        filtered = re.sub(r'www\S+', '', filtered)
+        filtered = re.sub(r'[0-9]\S+', '', filtered)
+        filtered = re.sub(r'[^A-Za-z]\S+', '', filtered)
+        filtered = re.sub(r'\W+', '', filtered)
+        if len(filtered) > 1:
+            new_words.append(filtered)
+
+    return new_words
+
 def tokenization(text):
-    tknzr = TweetTokenizer()
-    return tknzr.tokenize(text)
+    return nltk.word_tokenize(text)
 
 def count_vectorizer(text):
     return CountVectorizer().build_tokenizer()(text)
@@ -98,7 +111,7 @@ def remove_stopwords(words):
     """Remove stop words from list of tokenized words"""
     new_words = []
     for word in words:
-        if word not in stopwords.words('english'):
+        if word not in stopwords.words('english') and word not in stopwords.words('italian') and word not in stopwords.words('french'):
             new_words.append(word)
     return new_words
 
@@ -273,7 +286,7 @@ def replace_slang_internet_words(words):
                         "gratz":"congratulations","gtfo":"get_the_fuck_out","gl":"good_luck",
                         "gj":"good_job","gg":"good_job","hf":"have_fun",
                         "idk":"i_dont_know","irl":"in_real_life","jk":"just_kidding",
-                        "l8":"late","lmao":"laugh","lmbao":"laugh","lol":"laugh",
+         gi               "l8":"late","lmao":"laugh","lmbao":"laugh","lol":"laugh",
                         "n1":"nice_one","nvm":"nevermind","omg":"oh_my_god","omfg":"oh_my_god",
                         "stfu":"shut_it","ty":"thanks","yolo":"you_only_live_once"}
     new_words = []

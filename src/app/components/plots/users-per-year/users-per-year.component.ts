@@ -53,7 +53,6 @@ export class UsersPerYearComponent implements OnInit {
       this.graphConfigurations.push(new GraphConfiguration("Compliment profile By Year", "bar", new GraphDataConfiguration("compliment_profile")));
       this.graphConfigurations.push(new GraphConfiguration("Compliment writer By Year", "bar", new GraphDataConfiguration("compliment_writer")));
       this.graphConfigurations.push(new GraphConfiguration("Cool By Year", "bar", new GraphDataConfiguration("cool")));
-      this.graphConfigurations.push(new GraphConfiguration("Count By Year", "bar", new GraphDataConfiguration("count")));
       this.graphConfigurations.push(new GraphConfiguration("Fans By Year", "bar", new GraphDataConfiguration("fans")));
       this.graphConfigurations.push(new GraphConfiguration("Funny By Year", "bar", new GraphDataConfiguration("funny")));
       this.graphConfigurations.push(new GraphConfiguration("Review Count By Year", "bar", new GraphDataConfiguration("review_count")));

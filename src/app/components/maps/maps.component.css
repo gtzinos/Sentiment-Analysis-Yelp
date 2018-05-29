@@ -1,0 +1,16 @@
+agm-map {
+    height: 600px;
+    
+  }
+  
+  .title{
+    font-weight: bold;
+  }
+
+  .header{
+    text-align: center;
+  }
+
+mat-form-field, button[mat-button] {
+  margin: 5px;
+}

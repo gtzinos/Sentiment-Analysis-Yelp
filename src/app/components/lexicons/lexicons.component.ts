@@ -27,7 +27,13 @@ export class LexiconsComponent implements AfterViewInit {
       ],
       datasets: [
         {
-          "data": [101342, 55342],   // Example data
+          "data": [{
+            x: 10,
+            y: 20
+        }, {
+            x: 15,
+            y: 10
+        }],   // Example data
           "backgroundColor": [
             "#1fc8f8",
             "#76a346"
@@ -38,7 +44,7 @@ export class LexiconsComponent implements AfterViewInit {
     var chart = new Chart(
       chartElement,
       {
-        "type": 'doughnut',
+        "type": 'line',
         "data": data,
         "options": {
           "cutoutPercentage": 50,

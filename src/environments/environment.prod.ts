@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  api: "yelp.geotzinos.com:5000"
 };
