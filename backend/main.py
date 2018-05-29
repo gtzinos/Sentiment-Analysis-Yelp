@@ -17,13 +17,10 @@ from flask import request
 import pip
 print(pip.__version__)
 
-db = openConnection(db_hostname, db_name, db_port)
-
 app = Flask(__name__)
 app.Debug = True
 
 CORS(app)
-
 
 def preprocessing(dataList, fieldNames):
     for fieldName in fieldNames:
@@ -43,7 +40,7 @@ def preprocessing(dataList, fieldNames):
 
 
 def main():
-    global db
+    db = openConnection(db_hostname, db_name, db_port)
 
     reviews = Reviews(name=db_reviews_table_name)
 
