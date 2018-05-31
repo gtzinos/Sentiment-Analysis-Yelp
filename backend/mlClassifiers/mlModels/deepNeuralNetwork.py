@@ -92,7 +92,8 @@ class DeepNeuralNetwork:
 
   def getAccuracy(self):
     score = self.model.evaluate(self.testX, self.testY)
-    return {['Accuracy']: str(score[0] * 100)}
+    accuracy = [("Accuracy", str(score[0] * 100))]
+    return dict(accuracy)
 
 
   ''' Here we split the dataset into training and test sets, 0.1 % for test, '''
