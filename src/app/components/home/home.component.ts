@@ -23,7 +23,9 @@ export class HomeComponent implements OnInit {
   }
 
   search() {
-    delete this.predictions.cnn;
+    delete this.predictions.dnn;
+    delete this.predictions.svm;
+    delete this.predictions.nb;
 
     if (this.searchDisabled) {
       this.snackBar.open('Please wait to complete the previous request', "OK", { duration: 3000 });
@@ -36,13 +38,15 @@ export class HomeComponent implements OnInit {
 
       let promises = [];
 
-      promises.push(this.http.post(environment.api + "/cnn", { term: this.reviewText }).toPromise());
-      promises.push(this.http.post(environment.api + "/cnn", { term: this.reviewText }).toPromise());
-      promises.push(this.http.post(environment.api + "/cnn", { term: this.reviewText }).toPromise());
+      promises.push(this.http.post(environment.mlapi + "/dnn", { term: this.reviewText }).toPromise());
+      promises.push(this.http.post(environment.mlapi + "/svm", { term: this.reviewText }).toPromise());
+      promises.push(this.http.post(environment.mlapi + "/nb", { term: this.reviewText }).toPromise());
 
       Promise.all(promises).then(results => {
         results.forEach(result => {
           this.predictions[result.algorithm] = result.prediction;
+          console.log(this.predictions);
+          console.log(result);
         });
         this.searchDisabled = false;
       }, error => {

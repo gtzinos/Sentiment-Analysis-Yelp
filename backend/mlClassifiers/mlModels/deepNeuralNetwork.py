@@ -1,9 +1,9 @@
 import tensorflow as tf
 import tflearn
-import backend.dataAnalysis.filterData as preprocess
+import dataAnalysis.filterData as preprocess
 from sklearn.model_selection import train_test_split
 from tflearn.data_utils import to_categorical
-from backend.mlClassifiers.datasetController.mlDataframeCreator import *
+from mlClassifiers.datasetController.mlDataframeCreator import *
 from keras.preprocessing.text import Tokenizer
 
 ''' To create and call DNN, simple call the following methods in sequence :
@@ -87,7 +87,13 @@ class DeepNeuralNetwork:
 
   def totalAccuracy(self):
     score = self.model.evaluate(self.testX, self.testY)
-    print('Total accuracy: %0.4f%%' % (score[0] * 100))
+    accuracy = [("Accuracy",str(score[0] * 100))]
+    return dict(accuracy)
+
+  def getAccuracy(self):
+    score = self.model.evaluate(self.testX, self.testY)
+    return {['Accuracy']: str(score[0] * 100)}
+
 
   ''' Here we split the dataset into training and test sets, 0.1 % for test, '''
 

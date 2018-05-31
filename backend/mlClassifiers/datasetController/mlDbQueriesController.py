@@ -1,7 +1,7 @@
-from backend.dbQueries.databaseTable import DatabaseTable
-from backend.dbQueries.restaurants import Restaurants as restaurantsQueryCreator
-from backend.dbQueries.users import Users as usersQueryCreator
-from backend.dbQueries.reviews import Reviews as reviewsQueryCreator
+from dbQueries.databaseTable import DatabaseTable
+from dbQueries.restaurants import Restaurants as restaurantsQueryCreator
+from dbQueries.users import Users as usersQueryCreator
+from dbQueries.reviews import Reviews as reviewsQueryCreator
 
 
 class ML_DatasetCreator(DatabaseTable):

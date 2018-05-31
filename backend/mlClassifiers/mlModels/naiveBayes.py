@@ -2,9 +2,9 @@ from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
 
-import backend.dataAnalysis.filterData as preprocess
-from backend.mlClassifiers.dao.mlReadWriteCSV import checkFileExistance, loadDataframeFromMemory
-from backend.mlClassifiers.datasetController.mlDataframeCreator import createDataframeFromScrach, preprocessReview, \
+import dataAnalysis.filterData as preprocess
+from mlClassifiers.dao.mlReadWriteCSV import checkFileExistance, loadDataframeFromMemory
+from mlClassifiers.datasetController.mlDataframeCreator import createDataframeFromScrach, preprocessReview, \
   listOfStringToString
 
 
@@ -35,6 +35,15 @@ class NaiveBayes:
     prediction = self.model.predict(processedReview)
     print("Prediction from NB: %s" % str(prediction[0]))
     return prediction
+
+  def getMetrics(self):
+    from sklearn import metrics
+    listOfMetrics = [('Accuracy',str(metrics.accuracy_score(self.testY, self.y_pred_class)*100)),
+                     ('Precision', str(metrics.precision_score(self.testY, self.y_pred_class)*100)),
+                     ('Recall', str(metrics.recall_score(self.testY, self.y_pred_class)*100)),
+                     ('F1', str(metrics.f1_score(self.testY, self.y_pred_class)*100))]
+
+    return dict(listOfMetrics)
 
   def prepareDatasetForNB(self, fileExistance, fileName):
     if fileExistance is True:

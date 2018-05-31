@@ -1,13 +1,13 @@
-from backend.mlClassifiers.mlModels.deepNeuralNetwork import DeepNeuralNetwork
-from backend.mlClassifiers.mlModels.naiveBayes import NaiveBayes
-from backend.mlClassifiers.mlModels.svm import SVM_clf
-from backend.config.database import *
-from backend.dbQueries.connect import *
-from backend.dbQueries.restaurants import *
-from backend.dbQueries.reviews import *
-from backend.dbQueries.restaurants2 import *
-from backend.dbQueries.users import *
-from backend.dataAnalysis.filterData import *
+from mlClassifiers.mlModels.deepNeuralNetwork import DeepNeuralNetwork
+from mlClassifiers.mlModels.naiveBayes import NaiveBayes
+from mlClassifiers.mlModels.svm import SVM_clf
+from config.database import *
+from dbQueries.connect import *
+from dbQueries.restaurants import *
+from dbQueries.reviews import *
+from dbQueries.restaurants2 import *
+from dbQueries.users import *
+from dataAnalysis.filterData import *
 from flask import Flask, json, Response, jsonify, request
 from flask_cors import CORS
 
@@ -93,28 +93,43 @@ def getCNNPrediction():
 
     prediction = dnnModel.predict(termToClassify)
 
-    return jsonify({"algorithm": "dnn", "prediction": prediction})
+    return jsonify({"algorithm": "dnn", "prediction": str(prediction)})
 
 @app.route("/svm", methods=['POST'])
 def getSVMPrediction():
     global svmModel
     termToClassify = request.get_json().get('term')
 
-    prediction = svmModel.predict(termToClassify)
+    prediction = svmModel.predict(termToClassify)[0]
 
-    return jsonify({"algorithm": "svm", "prediction": prediction})
+    return jsonify({"algorithm": "svm", "prediction": str(prediction)})
 
 @app.route("/nb", methods=['POST'])
 def getNBPrediction():
     global nbModel
     termToClassify = request.get_json().get('term')
 
-    prediction = nbModel.predict(termToClassify)
+    prediction = nbModel.predict(termToClassify)[0]
 
-    return jsonify({"algorithm": "nb", "prediction": prediction})
+    return jsonify({"algorithm": "nb", "prediction": str(prediction)})
+
+@app.route("/metrics", methods=['POST'])
+def getMetrics():
+    global nbModel
+
+    nbMetrics = nbModel.getMetrics()
+    svmMetrics = svmModel.getMetrics()
+    dnnMetrics = dnnModel.getAccuracy()
+
+
+    return jsonify({"id": "NB", "Accuracy": nbMetrics["Accuracy"],"Precision": nbMetrics["Precision"],"Recall": nbMetrics["Recall"],"F1": nbMetrics["F1"]},
+                   {"id": "SVM", "Accuracy": svmMetrics["Accuracy"], "Precision": svmMetrics["Precision"],"Recall": svmMetrics["Recall"], "F1": svmMetrics["F1"]},
+                   {"id": "DNN", "Accuracy": dnnMetrics["Accuracy"]})
+
 # print(top)
 # if __name__ == "__main__":
     # main()
 
 
 
+app.run(host='127.0.0.1', port=5001, debug=True)

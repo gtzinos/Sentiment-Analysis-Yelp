@@ -2,7 +2,7 @@ import csv
 
 from pandas import DataFrame
 from pathlib import Path
-from backend.dataAnalysis.filterData import *
+from dataAnalysis.filterData import *
 
 def readCsvFile(dataset):
 

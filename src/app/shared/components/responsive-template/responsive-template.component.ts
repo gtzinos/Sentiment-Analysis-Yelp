@@ -68,16 +68,6 @@ export class ResponsiveTemplateComponent implements OnDestroy {
       ]
     },
     {
-      title: "Models Evaluation",
-      url: "/evaluation",
-      children: [
-        {
-          title: "Algorithm 1",
-          url: "/algorithm"
-        }
-      ]
-    },
-    {
       title:"Maps",
       url:"/maps"
     },

@@ -1,25 +1,25 @@
 from flask import Flask, json, Response, jsonify, request
 from flask_cors import CORS
-from backend.config.http_codes import HttpCodes
-from backend.dbQueries.maps import *
+from config.http_codes import HttpCodes
+from dbQueries.maps import *
 from bson.json_util import dumps
 
-from backend.dbQueries.restaurants import *
-from backend.dbQueries.reviews import *
-from backend.dbQueries.users import *
-from backend.mlClassifiers.datasetController.mlDataframeCreator import *
-from backend.mlClassifiers.mlModels.deepNeuralNetwork import DeepNeuralNetwork
-from backend.mlClassifiers.mlModels.naiveBayes import NaiveBayes
-from backend.mlClassifiers.mlModels.svm import SVM_clf
-from backend.config.database import *
-from backend.dbQueries.connect import *
-from backend.dbQueries.restaurants import *
-from backend.dbQueries.reviews import *
-from backend.dbQueries.restaurants2 import *
-from backend.dbQueries.users import *
-from backend.dataAnalysis.filterData import *
-from backend.dataAnalysis.plots import *
-from backend.dataAnalysis.training import *
+from dbQueries.restaurants import *
+from dbQueries.reviews import *
+from dbQueries.users import *
+from mlClassifiers.datasetController.mlDataframeCreator import *
+from mlClassifiers.mlModels.deepNeuralNetwork import DeepNeuralNetwork
+from mlClassifiers.mlModels.naiveBayes import NaiveBayes
+from mlClassifiers.mlModels.svm import SVM_clf
+from config.database import *
+from dbQueries.connect import *
+from dbQueries.restaurants import *
+from dbQueries.reviews import *
+from dbQueries.restaurants2 import *
+from dbQueries.users import *
+from dataAnalysis.filterData import *
+from dataAnalysis.plots import *
+from dataAnalysis.training import *
 
 app = Flask(__name__)
 app.Debug = True
@@ -302,3 +302,6 @@ def getSmokingNeighborhood():
     restaurants = Restaurants2(name=db_restaurants_table_name).get_smoking_neighborhood(db,neighborhood)
 
     return jsonify(restaurants)
+
+
+app.run(host='127.0.0.1', port=5000, debug=True)
