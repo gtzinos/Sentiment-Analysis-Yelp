@@ -22,10 +22,10 @@ from dataAnalysis.plots import *
 from dataAnalysis.training import *
 
 app = Flask(__name__)
-app.Debug = True
 
 CORS(app)
 
+app.run(host='0.0.0.0', port=5000, debug=False, use_reloader=False)
 
 def preprocessing(dataList, fieldNames):
     for fieldName in fieldNames:
@@ -303,5 +303,3 @@ def getSmokingNeighborhood():
 
     return jsonify(restaurants)
 
-
-app.run(host='127.0.0.1', port=5000, debug=True)

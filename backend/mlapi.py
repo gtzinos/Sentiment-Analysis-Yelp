@@ -81,10 +81,10 @@ svmModel.predict(sampleNegativeReview5)
 ''' SVM '''
 
 app = Flask(__name__)
-app.Debug = True
 
 CORS(app)
 
+app.run(host='0.0.0.0', port=5001, debug=False, use_reloader=False)
 
 @app.route("/dnn", methods=['POST'])
 def getCNNPrediction():
@@ -129,7 +129,3 @@ def getMetrics():
 # print(top)
 # if __name__ == "__main__":
     # main()
-
-
-
-app.run(host='127.0.0.1', port=5001, debug=True)
