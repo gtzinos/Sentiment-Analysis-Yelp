@@ -1,8 +1,7 @@
 .chart-wrapper{
-  width: 650px;
-  height: 600px;
-  display: inline-block;
-  margin: 20px auto;
+    width: 50%;
+    float: left !important;
+    margin: 30px auto;
 }
 
 select{
@@ -14,4 +13,8 @@ select{
 select:focus{
     box-shadow: none;
     border: solid thin rgba(0, 0, 0, 0.15);
+}
+
+canvas{
+    margin: 20px;
 }
