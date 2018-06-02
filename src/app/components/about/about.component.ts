@@ -33,8 +33,8 @@ export class AboutComponent implements OnInit {
     {
       name: "Marinos Zagotsis",
       title: "Full Stack Developer",
-      photo: "https://scontent.fskg1-1.fna.fbcdn.net/v/t1.0-9/13165870_10206152945047169_2926124721482332118_n.jpg?_nc_cat=0&oh=5fc8d7391a79a5699943be0ef1ee3812&oe=5B8C8D43",
-      description: "Hello...",
+      photo: "https://avatars1.githubusercontent.com/u/7119293?s=460&v=4",
+      description: "Hello I am Marinos Zagkotsis!",
       social: "https://gr.linkedin.com/in/marinoszagkotsis",
       email: "mailto:zagkotsis@csd.auth.gr"
     },
