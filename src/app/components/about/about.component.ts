@@ -31,10 +31,10 @@ export class AboutComponent implements OnInit {
       email: "mailto:atheodos@csd.auth.gr"
     },
     {
-      name: "Marinos Zagotsis",
+      name: "Marinos Zagkotsis",
       title: "Full Stack Developer",
-      photo: "https://avatars1.githubusercontent.com/u/7119293?s=460&v=4",
-      description: "Hello I am Marinos Zagkotsis!",
+      photo: "/assets/zagko.png",
+      description: "Hello I am Marinos Zagkotsis! Msc Student at Aristotle University Of Thessaloniki.",
       social: "https://gr.linkedin.com/in/marinoszagkotsis",
       email: "mailto:zagkotsis@csd.auth.gr"
     },
