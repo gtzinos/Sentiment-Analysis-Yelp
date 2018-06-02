@@ -42,7 +42,7 @@ def preprocessing(dataList, fieldNames):
 
 @app.route("/restaurants")
 def restaurants():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Restaurants(
         name=db_restaurants_table_name).find_top_restaurants(db, 10)
@@ -56,7 +56,7 @@ def restaurants():
 
 @app.route("/reviews")
 def reviews():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     reviews = Reviews(name=db_reviews_table_name).find_top_reviews(db, 10)
 
@@ -70,7 +70,7 @@ def reviews():
 
 @app.route("/users")
 def users():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     users = Users(name=db_users_table_name).find_top_users(db, 10)
 
@@ -84,7 +84,7 @@ def users():
 
 @app.route("/reviews-per-year")
 def getReviewsNumberByYear():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     reviews = Reviews(name=db_reviews_table_name).get_reviews_per_year(db, 13)
 
@@ -93,7 +93,7 @@ def getReviewsNumberByYear():
 
 @app.route("/restaurants-by-wifi")
 def getRestaurantsByWifi():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     reviews = Restaurants(
         name=db_restaurants_table_name).get_restaurants_by_wifi(db)
@@ -103,7 +103,7 @@ def getRestaurantsByWifi():
 
 @app.route("/users-per-year")
 def getUsersPerYear():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     users = Users(name=db_users_table_name).get_users_per_year(db, 15)
 
@@ -113,7 +113,7 @@ def getUsersPerYear():
 def getGroupedUsersBy():
     fieldName = request.get_json().get('fieldName')
 
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     users = Users(name=db_users_table_name).get_users_grouped_by(db, fieldName)
 
@@ -121,7 +121,7 @@ def getGroupedUsersBy():
 
 @app.route("/top-words")
 def getTopWords():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     reviews = Reviews(name=db_reviews_table_name).get_top_words(db, 10)
 
@@ -158,7 +158,7 @@ def getTopWords():
 def getAllRestaurans():
     limit = int(request.args.get('limit'))
 
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Maps(name=db_restaurants_table_name).find_restaurants(db, limit)
 
@@ -171,7 +171,7 @@ def getAllRestaurans():
 
 @app.route("/maps/5stars")
 def getFiveStarRestaurans():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Maps(
         name=db_restaurants_table_name).find_5star_restaurants(db,200)
@@ -187,7 +187,7 @@ def getWifiRestaurants():
     stars = int(request.args.get('stars'))
     limit = int(request.args.get('limit'))
 
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Maps(
         name=db_restaurants_table_name).find_wifi_restaurants(db, stars, limit)
@@ -203,7 +203,7 @@ def getWifiTvRestaurants():
     stars = int(request.args.get('stars'))
     limit = int(request.args.get('limit'))
 
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Maps(
         name=db_restaurants_table_name).find_wifi_tv_restaurants(db, stars, limit)
@@ -220,7 +220,7 @@ def get_gfk_hh_os_rest():
     stars = int(request.args.get('stars'))
     limit = int(request.args.get('limit'))
 
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     if(limit == 0):
         restaurants = Maps(name=db_restaurants_table_name).find_gfk_hh_os_rest_no_limit(db,stars)
@@ -235,7 +235,7 @@ def get_gfk_hh_os_rest():
 
 @app.route("/restaurants-by-groups")
 def getRestaurantsByGroup():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_neighborhood(db)
 
@@ -243,7 +243,7 @@ def getRestaurantsByGroup():
 
 @app.route("/restaurants-by-meals")
 def getRestaurantsByMeals():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_meals(db)
 
@@ -251,7 +251,7 @@ def getRestaurantsByMeals():
 
 @app.route("/restaurants-by-ambience")
 def getRestaurantsByAbmience():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_ambience(db)
 
@@ -259,7 +259,7 @@ def getRestaurantsByAbmience():
 
 @app.route("/restaurants-by-music")
 def getRestaurantsByMusic():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_music(db)
 
@@ -267,7 +267,7 @@ def getRestaurantsByMusic():
 
 @app.route("/restaurants-by-day")
 def getRestaurantsByDay():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Restaurants2(name=db_restaurants_table_name).get_restaurants_by_day(db)
 
@@ -275,7 +275,7 @@ def getRestaurantsByDay():
 
 @app.route("/best-restaurant-by-neighborhood")
 def getBestRestaurant():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Restaurants2(name=db_restaurants_table_name).get_best_restaurants_by_neighborhood(db)
 
@@ -283,7 +283,7 @@ def getBestRestaurant():
 
 @app.route("/top10-quiet-restaurants")
 def getTop10Quiet():
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Restaurants2(name=db_restaurants_table_name).get_top10_quiet_restaurants_by_neighborhood(db)
 
@@ -293,7 +293,7 @@ def getTop10Quiet():
 def getSmokingNeighborhood():
     neighborhood = request.args.get('neighborhood')
 
-    db = openConnection(db_hostname, db_name, db_port)
+    db = openConnection(db_hostname, db_name, db_port, db_username, db_password, db_authMechanism)
 
     restaurants = Restaurants2(name=db_restaurants_table_name).get_smoking_neighborhood(db,neighborhood)
 
