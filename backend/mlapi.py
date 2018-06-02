@@ -111,7 +111,7 @@ def getNBPrediction():
 
     return jsonify({"algorithm": "nb", "prediction": str(prediction)})
 
-@app.route("/metrics", methods=['POST'])
+@app.route("/metrics", methods=['GET'])
 def getMetrics():
     global nbModel
 
@@ -120,8 +120,8 @@ def getMetrics():
     dnnMetrics = dnnModel.getAccuracy()
 
 
-    return jsonify({"id": "NB", "Accuracy": nbMetrics["Accuracy"],"Precision": nbMetrics["Precision"],"Recall": nbMetrics["Recall"],"F1": nbMetrics["F1"]},
+    return jsonify([{"id": "NB", "Accuracy": nbMetrics["Accuracy"],"Precision": nbMetrics["Precision"],"Recall": nbMetrics["Recall"],"F1": nbMetrics["F1"]},
                    {"id": "SVM", "Accuracy": svmMetrics["Accuracy"], "Precision": svmMetrics["Precision"],"Recall": svmMetrics["Recall"], "F1": svmMetrics["F1"]},
-                   {"id": "DNN", "Accuracy": dnnMetrics["Accuracy"]})
+                   {"id": "DNN", "Accuracy": dnnMetrics["Accuracy"]}])
 
 app.run(host='0.0.0.0', port=5001, debug=False, use_reloader=False)
