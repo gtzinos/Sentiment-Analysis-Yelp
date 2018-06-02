@@ -15,7 +15,7 @@ export class AboutComponent implements OnInit {
     let randomDevs = [{
       name: "Ilias Karatsin",
       title: "Full Stack Developer",
-      photo: "https://scontent.fskg1-1.fna.fbcdn.net/v/t1.0-9/13226931_1233808183350275_6020287782455920427_n.jpg?_nc_cat=0&oh=78d74adeab14cb24b4af5997c6e7d9d6&oe=5B81C380",
+      photo: "/assets/ilias.jpg",
       description: "Hello...",
       website: "",
       social: "",
