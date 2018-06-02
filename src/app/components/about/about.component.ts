@@ -25,7 +25,7 @@ export class AboutComponent implements OnInit {
       name: "Anastasios Theodosiou",
       title: "Full Stack Developer",
       photo: "https://media.licdn.com/dms/image/C5103AQHN8Jvu3uDVZQ/profile-displayphoto-shrink_800_800/0?e=1531958400&v=beta&t=VSbVAqQTFYQxUBxGQchjFpDKXrxzU4TTFL-MCrPOXis",
-      description: "Hello...",
+      description: "Hello I am Anastasios Theodosiou! I work as a Front-End Developer.",
       website: "https://about.me/anastasios.theodosiou",
       social: "https://www.linkedin.com/in/anastasios-theodosiou",
       email: "mailto:atheodos@csd.auth.gr"
@@ -42,7 +42,7 @@ export class AboutComponent implements OnInit {
       name: "George Tzinos",
       title: "Full Stack Developer",
       photo: "/assets/tzinos.png",
-      description: "Hello...",
+      description: "Hello I am George Tzinos! I work as a Web Developer.",
       website: "http://www.geotzinos.com",
       social: "https://www.linkedin.com/in/george-tzinos-8a6110101/",
       email: "mailto:gtzinosv@csd.auth.gr"
