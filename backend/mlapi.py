@@ -10,6 +10,8 @@ from dbQueries.users import *
 from dataAnalysis.filterData import *
 from flask import Flask, json, Response, jsonify, request
 from flask_cors import CORS
+import nltk
+nltk.download('punkt')
 
 ''' SINCE I HAVE CREATED THEM, there is the csv file in resource, UNCOMMENT to run it from the start
     and delete the dataset.csv from resources to create it from the start.
