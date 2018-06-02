@@ -23,8 +23,6 @@ from dataAnalysis.training import *
 
 app = Flask(__name__)
 
-CORS(app)
-
 def preprocessing(dataList, fieldNames):
     for fieldName in fieldNames:
         print(fieldName)
@@ -302,3 +300,5 @@ def getSmokingNeighborhood():
     return jsonify(restaurants)
 
 app.run(host='0.0.0.0', port=5000, debug=False, use_reloader=False)
+
+CORS(app)
