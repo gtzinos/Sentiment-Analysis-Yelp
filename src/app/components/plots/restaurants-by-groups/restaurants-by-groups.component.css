@@ -1,7 +1,8 @@
 .chart-wrapper{
-    width: 50%;
-    float: left !important;
-    margin: 20px auto;
+  width: 650px;
+  height: 600px;
+  display: inline-block;
+  margin: 20px auto;
 }
 
 select{

@@ -12,6 +12,9 @@ export const routes: Routes = [
         path: 'home', loadChildren: '../../../components/home/home.module#HomeModule'
       },
       {
+        path: 'models-evaluation', loadChildren: '../../../components/models-evaluation/models-evaluation.module#ModelsEvaluationModule'
+      },
+      {
         path: 'about', loadChildren: '../../../components/about/about.module#AboutModule'
       },
       {

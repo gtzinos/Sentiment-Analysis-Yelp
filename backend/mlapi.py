@@ -84,8 +84,6 @@ app = Flask(__name__)
 
 CORS(app)
 
-app.run(host='0.0.0.0', port=5001, debug=False, use_reloader=False)
-
 @app.route("/dnn", methods=['POST'])
 def getCNNPrediction():
     global dnnModel
@@ -126,6 +124,4 @@ def getMetrics():
                    {"id": "SVM", "Accuracy": svmMetrics["Accuracy"], "Precision": svmMetrics["Precision"],"Recall": svmMetrics["Recall"], "F1": svmMetrics["F1"]},
                    {"id": "DNN", "Accuracy": dnnMetrics["Accuracy"]})
 
-# print(top)
-# if __name__ == "__main__":
-    # main()
+app.run(host='0.0.0.0', port=5001, debug=False, use_reloader=False)

@@ -5,7 +5,8 @@
 
 export const environment = {
   production: false,
-  api: "http://geotzinos.ddns.net:81"
+  api: "http://localhost:5000",
+  mlapi: "http://localhost:5001"
 };
 
 /*

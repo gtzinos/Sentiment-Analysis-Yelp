@@ -1,7 +1,6 @@
-.chart-wrapper {
-	display: inline-block;
-	width: 650px;
-	height: 600px;
-	margin: 24px;
-  }
-  
+.chart-wrapper{
+  width: 650px;
+  height: 600px;
+  display: inline-block;
+  margin: 20px auto;
+}

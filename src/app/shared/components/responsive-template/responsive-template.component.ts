@@ -16,6 +16,10 @@ export class ResponsiveTemplateComponent implements OnDestroy {
       url: "/home"
     },
     {
+      title: "Models Evaluation",
+      url: "/models-evaluation"
+    },
+    {
       title: "Plots",
       url: "/reviews-per-year",
       children: [
