@@ -14,6 +14,7 @@ export class HomeComponent implements OnInit {
   public searchDisabled: boolean;
 
   public predictions: Predictions;
+  public ensemble: string;
 
   constructor(public http: HttpClient, public snackBar: MatSnackBar) {
     this.predictions = new Predictions();
@@ -42,12 +43,32 @@ export class HomeComponent implements OnInit {
       promises.push(this.http.post(environment.mlapi + "/svm", { term: this.reviewText }).toPromise());
       promises.push(this.http.post(environment.mlapi + "/nb", { term: this.reviewText }).toPromise());
 
+      let frequency = {
+        "positive": 0,
+        "negative": 0
+      }
+
       Promise.all(promises).then(results => {
         results.forEach(result => {
-          this.predictions[result.algorithm] = result.prediction;
-          console.log(this.predictions);
-          console.log(result);
+          if(result.prediction == 0) {
+            this.predictions[result.algorithm] = "Negative";
+            frequency['negative'] += 1;
+          }
+          else {
+            this.predictions[result.algorithm] = "Positive";
+            frequency['positive'] += 1;
+          }
         });
+
+        this.ensemble = "Based on the predictions from our algorithms your review is classified as: ";
+
+        if(frequency['positive'] > 1) {
+          this.ensemble += "Positive";
+        }
+        else {
+          this.ensemble += "Negative";
+        }
+
         this.searchDisabled = false;
       }, error => {
         this.searchDisabled = false;
