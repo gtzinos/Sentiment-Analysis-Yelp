@@ -12,6 +12,7 @@ import { MatSelectChange } from '@angular/material';
   styleUrls: ['./restaurants-by-groups.component.css']
 })
 export class RestaurantsByGroupsComponent implements OnInit {
+  selectedNeighborhood;
 
   @ViewChild("restaurantsByArea") restaurantsByArea: ElementRef<any>;
   @ViewChild("restaurantsByMeals") restaurantsByMeals: ElementRef<any>;
@@ -110,13 +111,14 @@ export class RestaurantsByGroupsComponent implements OnInit {
 
       this.createChart(labels, restaurantsCount, "Number of Restaurants by Best Nights", restaurantsByDayCanvas, "bar");
     });
-    
-    this.getSmokingStats(this.neighborhood[0].value);
+
+    this.selectedNeighborhood=this.neighborhood[0].value;
+    this.getSmokingStats();
   }
 
-  
-  getSmokingStats(which){
-    this.http.get(environment.api + "/smoking-by-neighborhood?neighborhood="+which).subscribe((restaurants: [RestaurantByGroups]) => {
+
+  getSmokingStats(){
+    this.http.get(environment.api + "/smoking-by-neighborhood?neighborhood="+this.selectedNeighborhood).subscribe((restaurants: [RestaurantByGroups]) => {
       let labels = [];
       let restaurantsCount = [];
 
@@ -130,18 +132,15 @@ export class RestaurantsByGroupsComponent implements OnInit {
   }
 
   createChart(labels, data, chartLabel, chartElement, type = "line") {
+    let colors = ["#000000", "#003300", "#006600", "#660000", "#663300", "#669900", "#993300", "#996600", "#999900", "#99CC00", "#CC0000", "#CC6600", "#99CCFF", "#9900FF", "#6666FF", "#FFFF33", "#FFCC66"];
+
     var chartData = {
       labels: labels,
       datasets: [
         {
           "label": chartLabel,
           "data": data,
-          "backgroundColor": [
-            "#F08080",
-            "#696969",
-            "#1fc8f8",
-            "#76a346"
-          ]
+          "backgroundColor": colors.slice(0, labels.length)
         }]
     };
 

@@ -1,8 +1,10 @@
 .chart-wrapper{
-    width: 50%;
-    float: left !important;
-    margin: 30px auto;
+  width: 650px;
+  height: 600px;
+  display: inline-block;
+  margin: 20px auto;
 }
+
 
 select{
     width: 100%;
@@ -17,4 +19,8 @@ select:focus{
 
 canvas{
     margin: 20px;
+}
+
+mat-form-field {
+  margin: 24px;
 }

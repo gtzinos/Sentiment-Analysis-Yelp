@@ -8,7 +8,7 @@ import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   imports: [
-    CommonModule, FormsModule, MatSelectModule,
+    CommonModule, MatSelectModule,FormsModule, MatSelectModule,
     RouterModule.forChild([{ path: '', component: RestaurantsByGroupsComponent }])
   ],
   declarations: [RestaurantsByGroupsComponent]
